@@ -1,0 +1,73 @@
+@import './normalize.less';
+
+/* theme define start */
+
+// light
+body {
+  --bg-main: #efefef;
+  --bg-white: #f9f9f9;
+  --bg-select: #587482;
+  --text-color-h: #333;
+  --text-color-m: #555;
+  --text-color-l: #777;
+}
+/* theme define end */
+
+/* small-scroll-bar start */
+:root::-webkit-scrollbar {
+  width: 8px;
+}
+
+:root::-webkit-scrollbar-corner {
+  background-color: #cbcbcb;
+}
+
+:root::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #cbcbcb;
+}
+
+:root::-webkit-scrollbar-track-piece{
+  background-color: #eee;
+}
+
+/* small-scroll-bar end */
+
+body {
+  font-family: 'Source Sans Pro', 'Hiragino Sans GB', 'Microsoft Yahei', SimSun,
+    Helvetica, Arial, Sans-serif, monospace;
+  background-color: var(--bg-main);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+::selection {
+  background-color: var(--bg-select);
+  color: #fff;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+div,
+span,
+ul,
+a,
+li,
+p {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color-l);
+}

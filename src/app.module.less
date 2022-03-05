@@ -1,0 +1,17 @@
+@import './theme/base.less';
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  width: 1170px;
+  height: 100vh;
+  margin: auto;
+  position: relative;
+  :global {
+    .body {
+      display: flex;
+      margin-top: 50px;
+      flex: 1;
+    }
+  }
+}
