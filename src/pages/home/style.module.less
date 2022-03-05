@@ -1,0 +1,32 @@
+.home-container {
+  display: flex;
+  :global {
+    .home-main {
+      flex: 1;
+      background-color: var(--bg-white);
+      position: relative;
+      .home-title {
+        padding: 25px 10px;
+        h2 {
+          font-size: 30px;
+          font-weight: 300;
+          color: #000;
+        }
+        p {
+          font-size: 13px;
+          color: var(--text-color-l);
+          margin-top: 6px;
+          letter-spacing: 0.15em;
+        }
+      }
+      .home-card-list {
+        background-color: var(--bg-main);
+        padding: 20px;
+      }
+    }
+    .home-aside {
+      width: 220px;
+      background-color: var(--bg-white);
+    }
+  }
+}

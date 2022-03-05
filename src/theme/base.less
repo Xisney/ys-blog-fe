@@ -7,9 +7,12 @@ body {
   --bg-main: #efefef;
   --bg-white: #f9f9f9;
   --bg-select: #587482;
+  --bg-light: #58666e;
   --text-color-h: #333;
   --text-color-m: #555;
   --text-color-l: #777;
+  --text-muted: #a0a0a0;
+  --card-bg: #fff;
 }
 /* theme define end */
 
@@ -27,7 +30,7 @@ body {
   background-color: #cbcbcb;
 }
 
-:root::-webkit-scrollbar-track-piece{
+:root::-webkit-scrollbar-track-piece {
   background-color: #eee;
 }
 
@@ -63,11 +66,24 @@ span,
 ul,
 a,
 li,
-p {
+p,
+header,
+main,
+footer,
+section {
   box-sizing: border-box;
 }
 
 a {
   text-decoration: none;
   color: var(--text-color-l);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
 }

@@ -1,0 +1,35 @@
+.card-container {
+  background-color: var(--card-bg);
+  padding: 30px;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+    rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  :global {
+    .card-title {
+      font-size: 22px;
+      color: var(--text-color-m);
+      margin-bottom: 5px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .card-des {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.5em;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #f2f2f2;
+    }
+    .card-info-area {
+      display: flex;
+      li {
+        margin-right: 5px;
+        color: var(--text-muted);
+        font-size: 12px;
+      }
+    }
+  }
+}

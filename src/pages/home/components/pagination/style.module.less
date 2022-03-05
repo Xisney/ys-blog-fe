@@ -1,0 +1,25 @@
+.pagination-container {
+  background-color: var(--bg-main);
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  :global {
+    span {
+      display: inline-block;
+      background-color: #fff;
+      width: 35px;
+      height: 35px;
+      text-align: center;
+      line-height: 35px;
+      cursor: pointer;
+      transition: all 0.3s;
+      user-select: none;
+      &:hover {
+        opacity: 0.4;
+      }
+    }
+    .page-disabled span{
+      cursor: not-allowed;
+    }
+  }
+}

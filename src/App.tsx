@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import style from './app.module.less'
 import Header from './components/header'
 import Aside from './components/aside'
+import Footer from './components/footer'
 
 import Home from './pages/home'
 const Navigation = lazy(() => import('./pages/navigation'))
@@ -51,6 +52,7 @@ const App = () => {
             }
           />
         </Routes>
+        <Footer />
       </div>
     </div>
   )
