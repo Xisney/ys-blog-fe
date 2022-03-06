@@ -1,7 +1,13 @@
-import { FC, useEffect, useState } from 'react'
-import { LeftOutlined, RightOutlined } from '@ant-design/icons'
+import { FC, useEffect, useMemo, useState } from 'react'
+import {
+  LeftOutlined,
+  RightOutlined,
+  EllipsisOutlined,
+  DoubleLeftOutlined,
+  DoubleRightOutlined,
+} from '@ant-design/icons'
 import classnames from 'classnames'
-import { usePageNum } from './hooks'
+import { usePageNum, usePageNumArray, Pre_Five, Next_Five } from './hooks'
 import style from './style.module.less'
 
 interface PaginationProps {
@@ -19,6 +25,10 @@ const Pagination: FC<PaginationProps> = ({
 }) => {
   const [current, setCurrent] = useState(defaultCurrent)
   const pageNum = usePageNum(total, pageSize)
+  const pageNumArray = useMemo(
+    () => usePageNumArray(current, pageNum),
+    [current, pageNum]
+  )
 
   useEffect(() => {
     onChange(current)
@@ -37,20 +47,48 @@ const Pagination: FC<PaginationProps> = ({
         >
           <LeftOutlined />
         </span>
-        {Array(pageNum)
-          .fill(0)
-          .map((_, i) => {
-            return (
-              <span
-                key={i}
-                onClick={e => {
-                  setCurrent(parseInt((e.target as HTMLSpanElement).innerText))
-                }}
-              >
-                {i + 1}
-              </span>
-            )
-          })}
+        {pageNumArray.map(v => {
+          switch (v) {
+            case Pre_Five:
+              return (
+                <span className="page-opts" key={v}>
+                  <EllipsisOutlined className="page-ellipsis" />
+                  <DoubleLeftOutlined
+                    className="page-turning"
+                    onClick={() => {
+                      setCurrent(Math.max(1, current - 5))
+                    }}
+                  />
+                </span>
+              )
+            case Next_Five:
+              return (
+                <span className="page-opts" key={v}>
+                  <EllipsisOutlined className="page-ellipsis" />
+                  <DoubleRightOutlined
+                    className="page-turning"
+                    onClick={() => {
+                      setCurrent(Math.min(pageNum, current + 5))
+                    }}
+                  />
+                </span>
+              )
+            default:
+              return (
+                <span
+                  key={v}
+                  onClick={e => {
+                    setCurrent(
+                      parseInt((e.target as HTMLSpanElement).innerText)
+                    )
+                  }}
+                  className={classnames({ 'active-page': current === v })}
+                >
+                  {v}
+                </span>
+              )
+          }
+        })}
         <span
           className={classnames('page-next', {
             'page-disabled': current === pageNum,

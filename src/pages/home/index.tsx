@@ -35,10 +35,11 @@ const Home = () => {
           onChange={page => {
             console.log(page)
           }}
-          total={48}
+          total={100}
         />
       </main>
-      <aside className="home-aside">aside</aside>
+      <aside className="home-aside">
+      </aside>
     </div>
   )
 }

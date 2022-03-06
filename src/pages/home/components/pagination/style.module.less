@@ -4,22 +4,57 @@
   justify-content: center;
   padding: 20px 0;
   :global {
-    span {
-      display: inline-block;
-      background-color: #fff;
-      width: 35px;
-      height: 35px;
-      text-align: center;
-      line-height: 35px;
-      cursor: pointer;
-      transition: all 0.3s;
-      user-select: none;
-      &:hover {
-        opacity: 0.4;
+    .page-inner {
+      display: flex;
+      & > span {
+        display: inline-block;
+        background-color: #fff;
+        width: 35px;
+        height: 35px;
+        text-align: center;
+        line-height: 35px;
+        cursor: pointer;
+        transition: all 0.3s;
+        user-select: none;
+        margin: 0 5px;
+        color: var(--text-color-h);
+        &:not(.active-page):hover {
+          opacity: 0.4;
+        }
+        &.active-page {
+          border: 1px solid var(--text-color-l);
+          cursor: default;
+        }
+        &.page-disabled {
+          cursor: not-allowed;
+        }
       }
-    }
-    .page-disabled span{
-      cursor: not-allowed;
+
+      .page-opts {
+        background-color: transparent;
+        font-size: 20px;
+        position: relative;
+        .page-turning {
+          opacity: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 16px;
+          z-index: 3;
+          transition: all 0.3s;
+          color: #00967e;
+        }
+        &:hover {
+          opacity: 1 !important;
+          .page-turning {
+            opacity: 0.8;
+          }
+          .page-ellipsis {
+            opacity: 0;
+          }
+        }
+      }
     }
   }
 }
