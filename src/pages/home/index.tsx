@@ -1,7 +1,11 @@
 import { useState } from 'react'
 import style from './style.module.less'
-import Card from './components/card'
+import ListCard from './components/listCard'
 import Pagination from './components/pagination'
+import InfoCard from './components/infoCard'
+import CommomCard from './components/commomCard'
+import Tag from './components/tag'
+import Clock from './components/clock'
 
 const Home = () => {
   const [data, setData] = useState(
@@ -20,7 +24,7 @@ const Home = () => {
         <div className="home-card-list">
           {data.map(v => {
             return (
-              <Card
+              <ListCard
                 title="HS8145C5光猫桥接与路由器拨号"
                 des="HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号"
                 viewCount={100}
@@ -39,6 +43,24 @@ const Home = () => {
         />
       </main>
       <aside className="home-aside">
+        <InfoCard totalViewCount={5000} runTimes={400} />
+        <CommomCard cardTitle="公告">准备动手，今晚行动！</CommomCard>
+        <CommomCard cardTitle="标签云">
+          {[
+            'React',
+            'Vue',
+            'Javascript',
+            '图像',
+            '云计算',
+            'CSS',
+            'Typescript',
+            'vite',
+            'webpack',
+          ].map(v => (
+            <Tag key={v}>{v}</Tag>
+          ))}
+        </CommomCard>
+        <Clock />
       </aside>
     </div>
   )

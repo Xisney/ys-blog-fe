@@ -4,6 +4,7 @@ import style from './app.module.less'
 import Header from './components/header'
 import Aside from './components/aside'
 import Footer from './components/footer'
+import ToTopFixedBtn from './components/toTopFixedBtn'
 
 import Home from './pages/home'
 const Navigation = lazy(() => import('./pages/navigation'))
@@ -54,6 +55,7 @@ const App = () => {
         </Routes>
         <Footer />
       </div>
+      <ToTopFixedBtn />
     </div>
   )
 }

@@ -15,7 +15,7 @@ interface CardProps {
   imgSrc?: string
 }
 
-const Card: FC<CardProps> = ({
+const ListCard: FC<CardProps> = ({
   title,
   des,
   viewCount,
@@ -44,4 +44,4 @@ const Card: FC<CardProps> = ({
   )
 }
 
-export default Card
+export default ListCard
