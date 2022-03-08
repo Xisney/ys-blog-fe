@@ -1,10 +1,6 @@
 import { FC } from 'react'
 import style from './style.module.less'
-import {
-  EyeOutlined,
-  ClockCircleOutlined,
-  CommentOutlined,
-} from '@ant-design/icons'
+import { EyeOutlined, ClockCircleOutlined } from '@ant-design/icons'
 
 interface CardProps {
   title: string
