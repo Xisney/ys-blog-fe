@@ -29,7 +29,7 @@ const Home = () => {
                 des="HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号"
                 viewCount={100}
                 timeString="2022年3月5日"
-                commentCount={10}
+                tags={['React','Fetch','Net']}
                 key={v}
               />
             )

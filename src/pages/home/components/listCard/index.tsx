@@ -11,7 +11,7 @@ interface CardProps {
   des: string
   viewCount: number
   timeString: string
-  commentCount: number
+  tags: string[]
   imgSrc?: string
 }
 
@@ -20,7 +20,7 @@ const ListCard: FC<CardProps> = ({
   des,
   viewCount,
   timeString,
-  commentCount,
+  tags,
   imgSrc,
 }) => {
   return (
@@ -30,14 +30,21 @@ const ListCard: FC<CardProps> = ({
       <p className="card-des">{des}</p>
       <ul className="card-info-area">
         <li>
-          <EyeOutlined /> {viewCount} 次浏览
+          <span className="bottom-item">
+            <EyeOutlined /> {viewCount} 次浏览
+          </span>
+          <span className="bottom-item">
+            <ClockCircleOutlined /> {timeString}
+          </span>
         </li>
         <li>
-          <ClockCircleOutlined /> {timeString}
-        </li>
-        <li>
-          <CommentOutlined />{' '}
-          {commentCount ? `${commentCount} 条评论` : '暂无评论'}
+          {tags.map(v => {
+            return (
+              <span className="bottom-tag" key={v}>
+                {v}
+              </span>
+            )
+          })}
         </li>
       </ul>
     </div>

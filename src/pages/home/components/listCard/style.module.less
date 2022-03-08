@@ -1,11 +1,15 @@
 .card-container {
   background-color: var(--card-bg);
-  padding: 30px;
+  padding: 20px 25px;
   cursor: pointer;
   border-radius: 6px;
   margin-bottom: 20px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
     rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  transition: all .3s;
+  &:hover{
+    transform: translateY(-5px) scale(1.02);
+  }
   :global {
     .card-title {
       font-size: 22px;
@@ -25,10 +29,24 @@
     }
     .card-info-area {
       display: flex;
+      justify-content: space-between;
       li {
-        margin-right: 5px;
         color: var(--text-muted);
         font-size: 12px;
+      }
+      .bottom-item{
+        margin-right: 15px;
+      }
+      .bottom-tag{
+        display: inline-block;
+        box-sizing: content-box;
+        height: 18px;
+        line-height: 18px;
+        padding: 0 5px;
+        margin-left: 15px;
+        font-size: 12px;
+        color: #001722;
+        border: 1px solid #001722;
       }
     }
   }
