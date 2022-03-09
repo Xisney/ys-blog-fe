@@ -11,10 +11,12 @@ export interface NavCardProps {
 const NavCard: FC<NavCardProps> = ({ cardTitle, navCardItems }) => {
   return (
     <div className={style['navCard-container']}>
-      <h3>{cardTitle}</h3>
-      {navCardItems.map((v, i) => (
-        <NavCardItem key={i} {...v} />
-      ))}
+      <h3 className="navCard-title">{cardTitle}</h3>
+      <div className="navCards-wrapper">
+        {navCardItems.map((v, i) => (
+          <NavCardItem key={i} {...v} />
+        ))}
+      </div>
     </div>
   )
 }
