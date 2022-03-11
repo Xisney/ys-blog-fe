@@ -6,6 +6,7 @@ import InfoCard from './components/infoCard'
 import CommomCard from './components/commomCard'
 import Tag from './components/tag'
 import Clock from './components/clock'
+import PageTitle from '@src/components/pageTitle'
 
 const Home = () => {
   const [data, setData] = useState(
@@ -17,10 +18,10 @@ const Home = () => {
   return (
     <div className={style['home-container']}>
       <main className="home-main">
-        <header className="home-title">
-          <h2>沉梦昂志</h2>
-          <p>迄今所有人生都大写着失败，但并不妨碍我继续向前。 </p>
-        </header>
+        <PageTitle
+          title="沉梦昂志"
+          subTitle="迄今所有人生都大写着失败，但并不妨碍我继续向前。 "
+        />
         <div className="home-card-list">
           {data.map(v => {
             return (
@@ -29,7 +30,7 @@ const Home = () => {
                 des="HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号"
                 viewCount={100}
                 timeString="2022年3月5日"
-                tags={['React','Fetch','Net']}
+                tags={['React', 'Fetch', 'Net']}
                 key={v}
               />
             )

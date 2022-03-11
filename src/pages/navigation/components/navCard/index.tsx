@@ -11,6 +11,7 @@ export interface NavCardProps {
 const NavCard: FC<NavCardProps> = ({ cardTitle, navCardItems }) => {
   return (
     <div className={style['navCard-container']}>
+      <div className="navCard-anchor" id={cardTitle}></div>
       <h3 className="navCard-title">{cardTitle}</h3>
       <div className="navCards-wrapper">
         {navCardItems.map((v, i) => (
