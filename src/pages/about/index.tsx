@@ -1,14 +1,13 @@
-import PageTitle from '@src/components/pageTitle'
-import AboutPieChart from './components/aboutPieChart'
-import { getAboutData, AboutData } from '@src/api/about'
-import BaseContainer from '../components/baseContainer'
-import style from './style.module.less'
-import ReactMarkdown from 'react-markdown'
-import hljs from 'highlight.js'
+import PageTitle from "@src/components/pageTitle";
+import AboutPieChart from "./components/aboutPieChart";
+import { getAboutData, AboutData } from "@src/api/about";
+import BaseContainer from "../components/baseContainer";
+import style from "./style.module.less";
+import ReactMarkdown from "react-markdown";
+import hljs from "highlight.js";
 
-import './markdown.less'
-import 'highlight.js/styles/github.css'
-import { useEffect, useRef } from 'react'
+import "./theme/markdown.less";
+import "highlight.js/styles/github.css";
 
 const markdown = `
   ## 关于本站
@@ -20,39 +19,45 @@ const markdown = `
   ## 关于我
   + 前端狗
   - 学生
+
   \`\`\`js
   const a = 1
+  const b = 2
+  const c = a + b
   \`\`\`
-`
+`;
 
 const About = () => {
-  const markRef = useRef<HTMLDivElement>(null)
+  const parseMarkdown = (dom: HTMLDivElement | null) => {
+    if (!dom) return;
 
-  useEffect(() => {
-    markRef.current?.querySelectorAll('code').forEach(el => {
-      hljs.highlightElement(el)
-    })
-  }, [])
+    dom.querySelectorAll("pre code").forEach((el) => {
+      hljs.highlightElement(el as HTMLElement);
+    });
+  };
 
   return (
-    <BaseContainer className={style['about-container']} getData={getAboutData}>
+    <BaseContainer className={style["about-container"]} getData={getAboutData}>
       {(data: AboutData) => {
         return (
           <>
             <PageTitle title="关于" />
             <article className="about-mainArea">
-              <AboutPieChart data={data.groupData} />
-              <div ref={markRef}>
+              <div className="pie-wrapper">
+                <AboutPieChart data={data.groupData} />
+              </div>
+
+              <div ref={parseMarkdown} className="card-wrapper">
                 <ReactMarkdown className="markdown-body">
                   {markdown}
                 </ReactMarkdown>
               </div>
             </article>
           </>
-        )
+        );
       }}
     </BaseContainer>
-  )
-}
+  );
+};
 
-export default About
+export default About;
