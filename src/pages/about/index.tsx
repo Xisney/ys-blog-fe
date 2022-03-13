@@ -1,13 +1,13 @@
-import PageTitle from "@src/components/pageTitle";
-import AboutPieChart from "./components/aboutPieChart";
-import { getAboutData, AboutData } from "@src/api/about";
-import BaseContainer from "../components/baseContainer";
-import style from "./style.module.less";
-import ReactMarkdown from "react-markdown";
-import hljs from "highlight.js";
+import PageTitle from '@src/components/pageTitle'
+import AboutPieChart from './components/aboutPieChart'
+import { getAboutData, AboutData } from '@src/api/about'
+import BaseContainer from '../components/baseContainer'
+import style from './style.module.less'
+import ReactMarkdown from 'react-markdown'
+import hljs from 'highlight.js'
 
-import "./theme/markdown.less";
-import "highlight.js/styles/github.css";
+import './theme/markdown.less'
+import 'highlight.js/styles/github.css'
 
 const markdown = `
   ## 关于本站
@@ -25,19 +25,19 @@ const markdown = `
   const b = 2
   const c = a + b
   \`\`\`
-`;
+`
 
 const About = () => {
   const parseMarkdown = (dom: HTMLDivElement | null) => {
-    if (!dom) return;
+    if (!dom) return
 
-    dom.querySelectorAll("pre code").forEach((el) => {
-      hljs.highlightElement(el as HTMLElement);
-    });
-  };
+    dom.querySelectorAll('pre code').forEach((el) => {
+      hljs.highlightElement(el as HTMLElement)
+    })
+  }
 
   return (
-    <BaseContainer className={style["about-container"]} getData={getAboutData}>
+    <BaseContainer className={style['about-container']} getData={getAboutData}>
       {(data: AboutData) => {
         return (
           <>
@@ -54,10 +54,10 @@ const About = () => {
               </div>
             </article>
           </>
-        );
+        )
       }}
     </BaseContainer>
-  );
-};
+  )
+}
 
-export default About;
+export default About
