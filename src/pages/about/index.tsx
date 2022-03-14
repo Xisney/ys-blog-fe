@@ -44,7 +44,7 @@ const About = () => {
             <PageTitle title="关于" />
             <article className="about-mainArea">
               <div className="pie-wrapper">
-                <AboutPieChart data={data.groupData} />
+                <AboutPieChart data={data?.groupData} />
               </div>
 
               <div ref={parseMarkdown} className="card-wrapper">

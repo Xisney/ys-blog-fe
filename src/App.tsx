@@ -1,10 +1,12 @@
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import style from './app.module.less'
 import Header from './components/header'
 import Aside from './components/aside'
 import Footer from './components/footer'
 import ToTopFixedBtn from './components/toTopFixedBtn'
+
+import './theme/base.less'
+import style from './app.module.less'
 
 import Home from './pages/home'
 const Navigation = lazy(() => import('./pages/navigation'))

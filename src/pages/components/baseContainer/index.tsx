@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import { useGetData } from '@src/pages/hooks'
 import { AxiosPromise } from 'axios'
 import Loading from '@src/components/loading'
+import ErrorTips from '../errorTips'
 
 interface BaseContainerProps {
   className?: string
@@ -15,11 +16,15 @@ const BaseContainer: FC<BaseContainerProps> = ({
   getData,
   children,
 }) => {
-  const [data, loading] = useGetData(getData)
+  const [data, loading, error] = useGetData(getData)
+
+  const renderChildren = () => {
+    return loading ? <Loading /> : children(data)
+  }
 
   return (
     <div className={classNames(className)}>
-      {loading ? <Loading /> : children(data)}
+      {error ? <ErrorTips message={error.message} /> : renderChildren()}
     </div>
   )
 }
