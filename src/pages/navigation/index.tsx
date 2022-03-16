@@ -15,10 +15,12 @@ const Navigation = () => {
         return (
           <>
             <PageTitle title="导航" />
-            {data?.map((v, i) => (
-              <NavCard {...v} key={i} />
-            ))}
-            <NavAnchor anchorList={data?.map(v => v.cardTitle)} />
+            <div className="navigation-mainArea">
+              {data?.map((v, i) => (
+                <NavCard {...v} key={i} />
+              ))}
+            </div>
+            <NavAnchor anchorList={data?.map((v) => v.cardTitle)} />
           </>
         )
       }}

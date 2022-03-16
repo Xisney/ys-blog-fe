@@ -1,0 +1,79 @@
+.baseFilter-container {
+  position: relative;
+  width: 300px;
+  :global {
+    .filter-select {
+      display: flex;
+      align-items: center;
+      height: 30px;
+      padding: 0 8px;
+      border: 1px solid #d9d9d9;
+      user-select: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      &:hover {
+        background-color: #e0e6ed;
+        border: 2px solid #20a0ff;
+      }
+      .filter-multipleItem {
+        display: inline;
+        background-color: #f5f5f5;
+        padding: 4px;
+        margin-right: 3px;
+        font-size: 14px;
+      }
+      .filter-close {
+        font-size: 12px;
+        color: var(--text-color-l);
+        cursor: pointer;
+        margin-left: 4px;
+        &:hover {
+          color: var(--text-color-h);
+        }
+      }
+      .filter-placeHolder {
+        color: var(--text-color-l);
+      }
+    }
+    .filter-options {
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin-top: 8px;
+      max-height: 400px;
+      box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
+        rgba(17, 17, 26, 0.05) 0px 8px 32px;
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        user-select: none;
+        background-color: var(--card-bg);
+        color: var(--text-color-h);
+        height: 0;
+        line-height: 30px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: height 0.3s;
+        padding: 0 8px;
+        &.selected {
+          background-color: #bcddff;
+        }
+        &:hover:not(.selected) {
+          background-color: #f5f5f5;
+        }
+        .filter-selectText {
+          font-weight: 700;
+        }
+        .filter-checkIcon {
+          color: #64b0ff;
+          line-height: 30px;
+          height: 30px;
+        }
+        &.showFilterOption {
+          height: 30px;
+        }
+      }
+    }
+  }
+}
