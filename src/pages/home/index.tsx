@@ -7,6 +7,10 @@ import CommomCard from './components/commomCard'
 import Tag from './components/tag'
 import Clock from './components/clock'
 import PageTitle from '@src/components/pageTitle'
+import BaseContainer from '../components/baseContainer'
+import { getHomeData } from '@src/api/home'
+import { groupsAndTagsAtom } from '@src/atom'
+import { useRecoilValue } from 'recoil'
 
 const Home = () => {
   const [data, setData] = useState(
@@ -15,55 +19,53 @@ const Home = () => {
       .map((_, i) => i + 1)
   )
 
+  const groupsAndTags = useRecoilValue(groupsAndTagsAtom)
+
   return (
-    <div className={style['home-container']}>
-      <main className="home-main">
-        <PageTitle
-          title="沉梦昂志"
-          subTitle="迄今所有人生都大写着失败，但并不妨碍我继续向前。 "
-        />
-        <div className="home-card-list">
-          {data.map(v => {
-            return (
-              <ListCard
-                title="HS8145C5光猫桥接与路由器拨号"
-                des="HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号"
-                viewCount={100}
-                timeString="2022年3月5日"
-                tags={['React', 'Fetch', 'Net']}
-                key={v}
+    <BaseContainer className={style['home-container']} getData={getHomeData}>
+      {() => {
+        return (
+          <>
+            <main className="home-main">
+              <PageTitle
+                title="沉梦昂志"
+                subTitle="如沐春风如沐春风如沐春风如沐春风如沐春风如沐春风 "
               />
-            )
-          })}
-        </div>
-        <Pagination
-          onChange={page => {
-            console.log(page)
-          }}
-          total={100}
-        />
-      </main>
-      <aside className="home-aside">
-        <InfoCard totalViewCount={5000} runTimes={400} />
-        <CommomCard cardTitle="公告">准备动手，今晚行动！</CommomCard>
-        <CommomCard cardTitle="标签云">
-          {[
-            'React',
-            'Vue',
-            'Javascript',
-            '图像',
-            '云计算',
-            'CSS',
-            'Typescript',
-            'vite',
-            'webpack',
-          ].map(v => (
-            <Tag key={v}>{v}</Tag>
-          ))}
-        </CommomCard>
-        <Clock />
-      </aside>
-    </div>
+              <div className="home-card-list">
+                {data.map((v) => {
+                  return (
+                    <ListCard
+                      title="HS8145C5光猫桥接与路由器拨号"
+                      des="HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号"
+                      viewCount={100}
+                      timeString="2022年3月5日"
+                      tags={['React', 'Fetch', 'Net']}
+                      key={v}
+                    />
+                  )
+                })}
+              </div>
+              <Pagination
+                onChange={(page) => {
+                  console.log(page)
+                }}
+                total={100}
+              />
+            </main>
+            <aside className="home-aside">
+              <InfoCard totalViewCount={5000} runTimes={400} />
+              <CommomCard cardTitle="公告">准备动手，今晚行动！</CommomCard>
+              <CommomCard cardTitle="标签云">
+                {groupsAndTags?.groups.map(({ label, id }) => {
+                  return <Tag key={id}>{label}</Tag>
+                })}
+              </CommomCard>
+              <Clock />
+            </aside>
+          </>
+        )
+      }}
+    </BaseContainer>
   )
 }
 

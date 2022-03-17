@@ -22,10 +22,10 @@ specifiers:
   react-markdown: ^8.0.0
   react-router-dom: ^6.2.2
   react-transition-group: ^4.4.2
+  recoil: ^0.6.1
   typescript: ^4.5.4
   vite: ^2.8.0
   vite-plugin-svgr: ^1.0.1
-  ys-blog-fe: 'link:'
 
 dependencies:
   '@ant-design/icons': registry.npmmirror.com/@ant-design/icons/4.7.0_react-dom@17.0.2+react@17.0.2
@@ -39,7 +39,7 @@ dependencies:
   react-markdown: registry.npmmirror.com/react-markdown/8.0.0_a0c521d4794c7ad97f5f4c1c4a7d5818
   react-router-dom: registry.npmmirror.com/react-router-dom/6.2.2_react-dom@17.0.2+react@17.0.2
   react-transition-group: registry.npmmirror.com/react-transition-group/4.4.2_react-dom@17.0.2+react@17.0.2
-  ys-blog-fe: 'link:'
+  recoil: registry.npmmirror.com/recoil/0.6.1_react-dom@17.0.2+react@17.0.2
 
 devDependencies:
   '@types/node': registry.npmmirror.com/@types/node/17.0.21
@@ -1626,6 +1626,12 @@ packages:
     dev: true
     optional: true
 
+  registry.npmmirror.com/hamt_plus/1.0.2:
+    resolution: {integrity: sha512-t2JXKaehnMb9paaYA7J0BX8QQAY8lwfQ9Gjf4pg/mk4krt+cmwmU652HOoWonf+7+EQV97ARPMhhVgU1ra2GhA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/hamt_plus/-/hamt_plus-1.0.2.tgz}
+    name: hamt_plus
+    version: 1.0.2
+    dev: false
+
   registry.npmmirror.com/has-flag/3.0.0:
     resolution: {integrity: sha512-sKJf1+ceQBr4SMkvQnBDNDtf4TXpVhVGateu0t918bl30FnbE2m4vNLX+VWe/dpjlb+HugGYzW7uQXH98HPEYw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/has-flag/-/has-flag-3.0.0.tgz}
     name: has-flag
@@ -3188,6 +3194,26 @@ packages:
     dependencies:
       loose-envify: registry.npmmirror.com/loose-envify/1.4.0
       object-assign: registry.npmmirror.com/object-assign/4.1.1
+    dev: false
+
+  registry.npmmirror.com/recoil/0.6.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-J7oT3LZl2vpyFClgSUpOQjpykz84VSX/NJE/PavAtR8n7Z+whEdVBPUtwc2TEWjONeL/lJmiac2XQ+qEOQA52Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/recoil/-/recoil-0.6.1.tgz}
+    id: registry.npmmirror.com/recoil/0.6.1
+    name: recoil
+    version: 0.6.1
+    peerDependencies:
+      react: '>=16.13.1'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      hamt_plus: registry.npmmirror.com/hamt_plus/1.0.2
+      react: registry.npmmirror.com/react/17.0.2
+      react-dom: registry.npmmirror.com/react-dom/17.0.2_react@17.0.2
     dev: false
 
   registry.npmmirror.com/regenerator-runtime/0.13.9:
