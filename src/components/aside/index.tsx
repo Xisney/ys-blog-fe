@@ -14,7 +14,7 @@ const Aside = () => {
     <div className={style.aside}>
       <div className="info-area">
         <img src="/ys.png" alt="avatar" />
-        <p>名字</p>
+        <p>Yusheng</p>
         <span>十一月的肖邦</span>
         <ul className="social-links">
           <li>

@@ -13,7 +13,7 @@ const Header = () => {
     <div className={style.header}>
       <div className="header-logo">
         <HomeFilled />
-        <span className="logo-text">logo文字</span>
+        <span className="logo-text">YS</span>
       </div>
       <Search className="header-search" />
       <div

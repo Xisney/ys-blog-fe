@@ -7,7 +7,7 @@ import ErrorTips from '../errorTips'
 
 interface BaseContainerProps {
   className?: string
-  getData: () => AxiosPromise
+  getData: (() => AxiosPromise) | Array<() => AxiosPromise>
   children: (data: any) => ReactElement
 }
 

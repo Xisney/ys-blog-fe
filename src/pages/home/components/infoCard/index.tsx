@@ -16,13 +16,13 @@ const InfoCard: FC<InfoCardProps> = ({ totalViewCount, runTimes }) => {
         <span>
           <FileTextOutlined /> 总浏览量
         </span>
-        <span>{totalViewCount}次</span>
+        <span>{`${totalViewCount} 次`}</span>
       </div>
       <div className="info-item">
         <span>
           <CalendarOutlined /> 运行时间
         </span>
-        <span>{runTimes}天</span>
+        <span>{`${runTimes} 天`}</span>
       </div>
     </CommomCard>
   )

@@ -6,11 +6,9 @@ import { groupsAndTagsAtom } from '@src/atom'
 
 let isFetchCommonData = false
 
-export function useGetData(getData: () => AxiosPromise): any
-export function useGetData(getData: Array<() => AxiosPromise>): any
 export function useGetData(
   getData: (() => AxiosPromise) | Array<() => AxiosPromise>
-) {
+): any {
   const [data, setData] = useState<any>()
   const [error, setError] = useState<AxiosError>()
   const [loading, setLoading] = useState(true)

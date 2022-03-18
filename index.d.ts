@@ -3,7 +3,13 @@ declare module '*.module.less' {
   export default obj
 }
 
-declare module '*.svg'{
-  const path:string
+declare module '*.svg' {
+  const path: string
   export default path
+}
+
+declare module 'jinrishici' {
+  const load: (onSuccess: (res: any) => void, onError: (e: any) => void) => void
+
+  export { load }
 }

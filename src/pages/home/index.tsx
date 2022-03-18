@@ -8,9 +8,11 @@ import Tag from './components/tag'
 import Clock from './components/clock'
 import PageTitle from '@src/components/pageTitle'
 import BaseContainer from '../components/baseContainer'
-import { getHomeData } from '@src/api/home'
+import { getHomeBaseData, HomeBaseData, getHomePoemData } from '@src/api/home'
 import { groupsAndTagsAtom } from '@src/atom'
 import { useRecoilValue } from 'recoil'
+import { ArticleList, getArticleList } from '@src/api/common'
+import dayjs from 'dayjs'
 
 const Home = () => {
   const [data, setData] = useState(
@@ -22,39 +24,48 @@ const Home = () => {
   const groupsAndTags = useRecoilValue(groupsAndTagsAtom)
 
   return (
-    <BaseContainer className={style['home-container']} getData={getHomeData}>
-      {() => {
+    <BaseContainer
+      className={style['home-container']}
+      getData={[getHomeBaseData, getHomePoemData, getArticleList]}
+    >
+      {([baseData, poemData, articleList]: [
+        HomeBaseData,
+        string,
+        ArticleList
+      ]) => {
         return (
           <>
             <main className="home-main">
-              <PageTitle
-                title="沉梦昂志"
-                subTitle="如沐春风如沐春风如沐春风如沐春风如沐春风如沐春风 "
-              />
+              <PageTitle title="沉梦昂志" subTitle={poemData} />
               <div className="home-card-list">
-                {data.map((v) => {
+                {articleList.dataList.map((v) => {
                   return (
                     <ListCard
-                      title="HS8145C5光猫桥接与路由器拨号"
-                      des="HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号HS8145C5光猫桥接与路由器拨号"
+                      title={v.title}
+                      des={v.description}
                       viewCount={100}
-                      timeString="2022年3月5日"
-                      tags={['React', 'Fetch', 'Net']}
-                      key={v}
+                      timeString={dayjs(v.publishTime).format(
+                        'YYYY[年]M[月]D[日]'
+                      )}
+                      tags={v.tags.map((v) => v.label)}
+                      key={v.id}
                     />
                   )
                 })}
+                <Pagination
+                  onChange={(page) => {
+                    console.log(page)
+                  }}
+                  total={100}
+                />
               </div>
-              <Pagination
-                onChange={(page) => {
-                  console.log(page)
-                }}
-                total={100}
-              />
             </main>
             <aside className="home-aside">
-              <InfoCard totalViewCount={5000} runTimes={400} />
-              <CommomCard cardTitle="公告">准备动手，今晚行动！</CommomCard>
+              <InfoCard
+                totalViewCount={baseData.blogInfo.viewCount}
+                runTimes={baseData.blogInfo.runTime}
+              />
+              <CommomCard cardTitle="公告">{baseData.notice}</CommomCard>
               <CommomCard cardTitle="标签云">
                 {groupsAndTags?.groups.map(({ label, id }) => {
                   return <Tag key={id}>{label}</Tag>
