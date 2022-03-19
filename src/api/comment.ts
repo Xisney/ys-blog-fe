@@ -17,3 +17,7 @@ export interface CommentData {
 export function getCommentData() {
   return httpRequest('/getComment')
 }
+
+export function getAvatarData(qqNumber: string) {
+  return httpRequest(`https://q1.qlogo.cn/g?b=qq&nk=${qqNumber}&s=640`)
+}

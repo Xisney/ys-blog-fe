@@ -1,0 +1,37 @@
+.labelInput-wrapper {
+  position: relative;
+  color: var(--text-color-m);
+  :global {
+    label {
+      display: inline-block;
+      position: absolute;
+      left: 20px;
+      top: 0;
+      transform: translateY(-50%);
+      background-color: #fff;
+      padding: 0 4px;
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+    #textInput {
+      box-sizing: border-box;
+      height: 38px;
+      outline: none;
+      border: none; //reset
+      border: 2px solid gray;
+      border-radius: 100px;
+      padding: 4px 15px;
+      transition: border-color 0.3s;
+      font-size: 18px;
+      font-family: 'yu100';
+      letter-spacing: 0.05em;
+      width: 100%;
+      &:focus {
+        border-color: #00a4eb;
+        & + label {
+          color: #00a4eb;
+        }
+      }
+    }
+  }
+}
