@@ -30,3 +30,17 @@ export function debounce(
     }, interval)
   }
 }
+
+export function isValidEmail(data: string) {
+  return /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(data)
+}
+
+export function isValidQQ(data: string) {
+  return /[1-9][0-9]{4,}/.test(data)
+}
+
+export function isValidUrl(data: string) {
+  return /(https?|ftp|file):\/\/[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]/.test(
+    data
+  )
+}

@@ -1,0 +1,44 @@
+.commentItem-wrapper {
+  display: flex;
+  margin-top: 20px;
+  :global {
+    .commentItem-info {
+      margin-left: 15px;
+      flex: 1;
+    }
+    .commentItem-info-header {
+      display: flex;
+      justify-content: space-between;
+      .comment-creator {
+        display: flex;
+        align-items: center;
+      }
+      .comment-nickname {
+        font-size: 20px;
+        color: #f1962e;
+      }
+      .comment-adminLabel {
+        margin-left: 10px;
+        background-color: #6193bb;
+        padding: 2px 5px;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 14px;
+      }
+      .comment-time {
+        margin-left: 10px;
+        font-size: 14px;
+      }
+      .reply-icon {
+        cursor: pointer;
+        color: #062531;
+      }
+    }
+    .commentItem-info-bottom {
+      background-color: var(--bg-white);
+      padding: 10px 15px;
+      margin-top: 8px;
+      border-radius: 5px;
+    }
+  }
+}

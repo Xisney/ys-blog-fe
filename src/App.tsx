@@ -14,6 +14,11 @@ const About = lazy(() => import('./pages/about'))
 const Archive = lazy(() => import('./pages/archive'))
 const Comment = lazy(() => import('./pages/comment'))
 
+// dayjs 全局中文
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
+dayjs.locale('zh-cn')
+
 const App = () => {
   return (
     <div className={style['app-container']}>

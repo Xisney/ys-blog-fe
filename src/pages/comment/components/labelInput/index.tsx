@@ -1,51 +1,48 @@
-import { ChangeEvent, FC, KeyboardEvent, KeyboardEventHandler } from 'react'
+import {
+  ChangeEvent,
+  ChangeEventHandler,
+  FC,
+  FocusEventHandler,
+  KeyboardEvent,
+} from 'react'
 import style from './style.module.less'
 import cx from 'classnames'
 
 interface LabelInputProps {
   label: string
   placeHolder?: string
-  type?: 'number' | 'text'
   className?: string
-  onEnter?: (data: string, target: HTMLInputElement) => void
-  onChange?: (data: string) => void
+  onChange?: ChangeEventHandler<HTMLInputElement>
+  onBlur?: FocusEventHandler<HTMLInputElement>
   value?: string
 }
 
 const LabelInput: FC<LabelInputProps> = ({
   label,
   placeHolder = '请输入内容',
-  type = 'text',
   className,
-  onEnter,
   onChange,
+  onBlur,
   value,
 }) => {
   const handleEnterInput = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key !== 'Enter') return
 
     const target = e.target as HTMLInputElement
-    if (typeof onEnter === 'function') {
-      onEnter(target.value, target)
-    }
+    // 输入enter，input直接blur，具体逻辑交给onBlur处理，防止重复调用
     target.blur()
-  }
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (typeof onChange === 'function') {
-      onChange(e.target.value)
-    }
   }
 
   return (
     <div className={cx(style['labelInput-wrapper'], className)}>
       <input
-        type={type}
+        type="text"
         id="textInput"
         placeholder={placeHolder}
         onKeyDown={handleEnterInput}
-        onChange={handleInputChange}
+        onChange={onChange}
         value={value}
+        onBlur={onBlur}
       />
       <label htmlFor="textInput">{label}</label>
     </div>
