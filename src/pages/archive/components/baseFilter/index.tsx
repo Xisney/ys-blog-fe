@@ -6,7 +6,7 @@ import style from './style.module.less'
 interface BaseFilterProps {
   multiple?: boolean
   placeHolder?: string
-  data: string[]
+  data: { label: string; blogNum?: number }[]
   onChange?: (data: any) => void
   apisRef: MutableRefObject<any[]>
 }
@@ -16,6 +16,7 @@ const BaseFilter: FC<BaseFilterProps> = ({
   data,
   placeHolder,
   apisRef,
+  onChange,
 }) => {
   const [active, setActive] = useState(false)
   const [selected, setSelected] = useState<string>()
@@ -29,7 +30,7 @@ const BaseFilter: FC<BaseFilterProps> = ({
         setMultipleSelected([...multipleSelected, v])
       }
     } else {
-      setSelected((pre) => {
+      setSelected(pre => {
         return pre === v ? '' : v
       })
       setActive(false)
@@ -38,17 +39,17 @@ const BaseFilter: FC<BaseFilterProps> = ({
 
   const removeMultipleSelected = (v: string) => {
     if (multipleSelected.length === 1) setActive(false)
-    setMultipleSelected(multipleSelected.filter((s) => s !== v))
+    setMultipleSelected(multipleSelected.filter(s => s !== v))
   }
 
   const renderSelectItem = () => {
     return multiple
-      ? multipleSelected.map((v) => {
+      ? multipleSelected.map(v => {
           return (
             <span
               className="filter-multipleItem"
               key={v}
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation()
                 removeMultipleSelected(v)
               }}
@@ -71,17 +72,23 @@ const BaseFilter: FC<BaseFilterProps> = ({
 
     return () => {
       document.removeEventListener('click', closeOption)
-      apisRef.current = apisRef.current.filter((v) => v !== setActive)
+      apisRef.current = apisRef.current.filter(v => v !== setActive)
     }
   }, [])
+
+  useEffect(() => {
+    if (typeof onChange !== 'function') return
+
+    multiple ? onChange(multipleSelected) : onChange(selected)
+  }, [selected, multipleSelected])
 
   return (
     <div
       className={style['baseFilter-container']}
-      onClick={(e) => {
+      onClick={e => {
         // 阻止后序原生事件执行，防止点击容器时也关闭下拉区域
         e.nativeEvent.stopPropagation()
-        apisRef.current.forEach((f) => {
+        apisRef.current.forEach(f => {
           if (f !== setActive) f(false)
         })
       }}
@@ -99,7 +106,7 @@ const BaseFilter: FC<BaseFilterProps> = ({
         )}
       </div>
       <ul className="filter-options">
-        {data.map((v) => {
+        {data.map(({ label: v, blogNum }) => {
           return (
             <li
               className={classNames({
@@ -123,6 +130,9 @@ const BaseFilter: FC<BaseFilterProps> = ({
               </span>
               {multiple && multipleSelected.includes(v) && (
                 <CheckOutlined className="filter-checkIcon" />
+              )}
+              {blogNum !== undefined && (
+                <span style={{ marginRight: 5 }}>{blogNum}</span>
               )}
             </li>
           )

@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import style from './style.module.less'
 import cx from 'classnames'
+import failback from './static/user.svg'
 
 interface AvatarProps {
   src: string
@@ -10,10 +11,7 @@ interface AvatarProps {
 const Avatar: FC<AvatarProps> = ({ src, className }) => {
   return (
     <img
-      src={
-        src ||
-        'https://jack-img.oss-cn-hangzhou.aliyuncs.com/img/20210807103114.png'
-      }
+      src={src || failback}
       alt="avatar"
       className={cx(style['avatar-wrapper'], className)}
     />

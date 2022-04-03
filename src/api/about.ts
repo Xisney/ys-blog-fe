@@ -2,11 +2,8 @@ import { AxiosPromise } from 'axios'
 import { httpRequest } from '.'
 
 export interface AboutData {
-  groupData: {
-    value: number
-    name: string
-  }[]
-  aboutData: string
+  code: number
+  data: string
 }
 
 export function getAboutData(): AxiosPromise<AboutData> {

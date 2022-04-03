@@ -1,15 +1,17 @@
 import { FC } from 'react'
-import { ArchiveData } from '@src/api/archive'
+import { ArchiveItem } from '@src/api/archive'
 import style from './style.module.less'
 
 interface TimeLineProps {
-  data: ArchiveData[]
+  data: ArchiveItem[]
 }
 
 const colors = ['#F1962E', '#00A4EB', '#F08375', '#896BAE']
 
 const TimeLine: FC<TimeLineProps> = ({ data }) => {
-  return (
+  return data.length === 0 ? (
+    <h3 className="timeline-no-data">暂无数据</h3>
+  ) : (
     <ul className={style['timeline-container']}>
       {data.map((v, i) => {
         const color = colors[i % 4]
@@ -19,11 +21,11 @@ const TimeLine: FC<TimeLineProps> = ({ data }) => {
               {v.archiveTime}
             </h3>
             <ul className="timeItem-wrapper">
-              {v.articles.map(({ id, timeStamp, title }) => {
+              {v.blogs.map(({ id, publishTime, title }) => {
                 return (
                   <li key={id}>
                     <div className="timeItem-time">{`${new Date(
-                      +timeStamp
+                      publishTime
                     ).getDate()}日`}</div>
                     <div className="timeItem-line" />
                     <div

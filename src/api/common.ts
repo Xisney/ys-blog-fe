@@ -1,30 +1,22 @@
 import { httpRequest } from '.'
 
 export function getGroupsAndTags() {
-  return httpRequest('/filter')
+  return httpRequest('/groupAndTags')
 }
 
 export interface ArticleList {
-  listTotalPage: number
-  dataList: {
+  code: number
+  data: {
     title: string
-    tags: { label: string; id: string }[]
-    group: { label: string; id: string }
-    publishTime: number
+    tags: { label: string; id: number }[]
+    group: { label: string; id: number }
+    publishTime: string
     viewCount: number
-    id: string
+    id: number
     description: string
   }[]
 }
 
-export function getArticleList(pageNum?: number) {
-  return httpRequest('/list', {
-    method: 'post',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: {
-      listPageNum: pageNum,
-    },
-  })
+export function getArticleList() {
+  return httpRequest('/blogList')
 }

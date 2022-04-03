@@ -8,7 +8,7 @@ import ErrorTips from '../errorTips'
 interface BaseContainerProps {
   className?: string
   getData: (() => AxiosPromise) | Array<() => AxiosPromise>
-  children: (data: any) => ReactElement
+  children: (data: any, setData: any) => ReactElement
 }
 
 const BaseContainer: FC<BaseContainerProps> = ({
@@ -16,10 +16,10 @@ const BaseContainer: FC<BaseContainerProps> = ({
   getData,
   children,
 }) => {
-  const [data, loading, error] = useGetData(getData)
+  const [data, loading, error, setData] = useGetData(getData)
 
   const renderChildren = () => {
-    return loading ? <Loading /> : children(data)
+    return loading ? <Loading /> : children(data, setData)
   }
 
   return (

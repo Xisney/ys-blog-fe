@@ -19,7 +19,7 @@ export function useGetData(
 
     // 特定数据处理
     const givenData = Array.isArray(getData)
-      ? Promise.all(getData.map((v) => v()))
+      ? Promise.all(getData.map(v => v()))
       : getData()
 
     // 公共数据处理
@@ -31,9 +31,10 @@ export function useGetData(
       .then(([givenData, commonData]) => {
         if (mounted) {
           // 特定数据处理
+
           setData(
             Array.isArray(givenData)
-              ? givenData.map((v) => v.data)
+              ? givenData.map(v => v.data)
               : givenData.data
           )
 
@@ -55,5 +56,5 @@ export function useGetData(
     }
   }, [])
 
-  return [data, loading, error]
+  return [data, loading, error, setData]
 }

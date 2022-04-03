@@ -1,12 +1,18 @@
 import { httpRequest } from '.'
 
-export interface ArchiveData {
+export interface ArchiveItem {
   archiveTime: string
-  articles: {
-    id: string
-    timeStamp: number
+  blogs: {
+    id: number
+    publishTime: Date
     title: string
+    tags: { label: string; id: number }[]
+    group: { label: string; id: number }
   }[]
+}
+export interface ArchiveData {
+  code: number
+  data: ArchiveItem[]
 }
 
 export function getArchiveData() {

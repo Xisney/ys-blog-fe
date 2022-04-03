@@ -2,24 +2,27 @@ import { httpRequest } from '.'
 import { load as poemApi } from 'jinrishici'
 import { AxiosPromise } from 'axios'
 export interface HomeBaseData {
-  notice: string
-  blogInfo: {
+  code: number
+  data: {
+    notice: string
     viewCount: number
-    runTime: number
+    lastModify: string
+    startTime: number
+    blogCount: number
   }
 }
 
 export function getHomeBaseData(): AxiosPromise<HomeBaseData> {
-  return httpRequest('/home/base')
+  return httpRequest('baseInfo')
 }
 
 export function getHomePoemData(): any {
   return new Promise((resolve, reject) => {
     poemApi(
-      (res) => {
+      res => {
         resolve({ data: res.data.content })
       },
-      (e) => {
+      e => {
         reject({ message: e.errMessage })
       }
     )

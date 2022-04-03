@@ -6,12 +6,13 @@
     .page-inner {
       display: flex;
       & > span {
-        display: inline-block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background-color: var(--card-bg);
         width: 35px;
         height: 35px;
         text-align: center;
-        line-height: 35px;
         cursor: pointer;
         transition: all 0.3s;
         user-select: none;

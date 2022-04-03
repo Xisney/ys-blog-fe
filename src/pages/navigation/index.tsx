@@ -1,6 +1,6 @@
 import BaseContainer from '../components/baseContainer'
 import NavCard, { NavCardProps } from './components/navCard'
-import { getNavigationItems } from '@src/api/navigation'
+import { getNavigationItems, NavigationData } from '@src/api/navigation'
 import NavAnchor from './components/navAnchor'
 import PageTitle from '@src/components/pageTitle'
 import style from './style.module.less'
@@ -11,16 +11,16 @@ const Navigation = () => {
       className={style['navigation-container']}
       getData={getNavigationItems}
     >
-      {(data: NavCardProps[]) => {
+      {(data: NavigationData) => {
         return (
           <>
             <PageTitle title="导航" />
             <div className="navigation-mainArea">
-              {data?.map((v, i) => (
+              {data?.data.map((v, i) => (
                 <NavCard {...v} key={i} />
               ))}
             </div>
-            <NavAnchor anchorList={data?.map((v) => v.cardTitle)} />
+            <NavAnchor anchorList={data?.data.map(v => v.label)} />
           </>
         )
       }}

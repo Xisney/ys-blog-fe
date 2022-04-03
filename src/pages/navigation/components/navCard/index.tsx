@@ -4,17 +4,18 @@ import { NavCardItemProps } from '../navCardItem'
 import NavCardItem from '../navCardItem'
 
 export interface NavCardProps {
-  cardTitle: string
-  navCardItems: NavCardItemProps[]
+  id: number
+  label: string
+  navItems: NavCardItemProps[]
 }
 
-const NavCard: FC<NavCardProps> = ({ cardTitle, navCardItems }) => {
+const NavCard: FC<NavCardProps> = ({ label, navItems }) => {
   return (
     <div className={style['navCard-container']}>
-      <div className="navCard-anchor" id={cardTitle}></div>
-      <h3 className="navCard-title">{cardTitle}</h3>
+      <div className="navCard-anchor" id={label}></div>
+      <h3 className="navCard-title">{label}</h3>
       <div className="navCards-wrapper">
-        {navCardItems.map((v, i) => (
+        {navItems.map((v, i) => (
           <NavCardItem key={i} {...v} />
         ))}
       </div>

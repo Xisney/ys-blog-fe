@@ -1,14 +1,18 @@
 import { atom } from 'recoil'
 
 interface GroupsAndTags {
-  groups: {
-    label: string
-    id: string
-  }[]
-  tags: {
-    label: string
-    id: string
-  }[]
+  code: number
+  data: {
+    groups: {
+      label: string
+      id: number
+      blogNum: number
+    }[]
+    tags: {
+      label: string
+      id: number
+    }[]
+  }
 }
 
 export const groupsAndTagsAtom = atom<GroupsAndTags | null>({

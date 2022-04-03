@@ -13,14 +13,11 @@ import { groupsAndTagsAtom } from '@src/atom'
 import { useRecoilValue } from 'recoil'
 import { ArticleList, getArticleList } from '@src/api/common'
 import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+
+dayjs.extend(relativeTime)
 
 const Home = () => {
-  const [data, setData] = useState(
-    Array(10)
-      .fill(0)
-      .map((_, i) => i + 1)
-  )
-
   const groupsAndTags = useRecoilValue(groupsAndTagsAtom)
 
   return (
@@ -38,22 +35,22 @@ const Home = () => {
             <main className="home-main">
               <PageTitle title="沉梦昂志" subTitle={poemData} />
               <div className="home-card-list">
-                {articleList.dataList.map((v) => {
+                {articleList.data.map(v => {
                   return (
                     <ListCard
                       title={v.title}
                       des={v.description}
-                      viewCount={100}
+                      viewCount={v.viewCount}
                       timeString={dayjs(v.publishTime).format(
                         'YYYY[年]M[月]D[日]'
                       )}
-                      tags={v.tags.map((v) => v.label)}
+                      tags={v.tags.map(v => v.label)}
                       key={v.id}
                     />
                   )
                 })}
                 <Pagination
-                  onChange={(page) => {
+                  onChange={page => {
                     console.log(page)
                   }}
                   total={100}
@@ -62,12 +59,12 @@ const Home = () => {
             </main>
             <aside className="home-aside">
               <InfoCard
-                totalViewCount={baseData.blogInfo.viewCount}
-                runTimes={baseData.blogInfo.runTime}
+                totalViewCount={baseData.data.viewCount}
+                runTime={dayjs(baseData.data.startTime).fromNow(true)}
               />
-              <CommomCard cardTitle="公告">{baseData.notice}</CommomCard>
+              <CommomCard cardTitle="公告">{baseData.data.notice}</CommomCard>
               <CommomCard cardTitle="标签云">
-                {groupsAndTags?.groups.map(({ label, id }) => {
+                {groupsAndTags?.data.groups.map(({ label, id }) => {
                   return <Tag key={id}>{label}</Tag>
                 })}
               </CommomCard>

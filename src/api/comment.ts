@@ -15,7 +15,7 @@ export interface CommentData {
 }
 
 export function getCommentData() {
-  return httpRequest('/getComment')
+  return httpRequest('/about')
 }
 
 export function getAvatarData(qqNumber: string) {

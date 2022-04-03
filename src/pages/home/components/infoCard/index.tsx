@@ -6,10 +6,10 @@ import style from './style.module.less'
 
 interface InfoCardProps {
   totalViewCount: number
-  runTimes: number
+  runTime: string
 }
 
-const InfoCard: FC<InfoCardProps> = ({ totalViewCount, runTimes }) => {
+const InfoCard: FC<InfoCardProps> = ({ totalViewCount, runTime }) => {
   return (
     <CommomCard cardTitle="博客信息" className={style['blogInfo-card']}>
       <div className="info-item">
@@ -22,7 +22,7 @@ const InfoCard: FC<InfoCardProps> = ({ totalViewCount, runTimes }) => {
         <span>
           <CalendarOutlined /> 运行时间
         </span>
-        <span>{`${runTimes} 天`}</span>
+        <span>{runTime}</span>
       </div>
     </CommomCard>
   )

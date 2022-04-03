@@ -54,14 +54,12 @@ const Comment = () => {
       className={style['comment-container']}
     >
       {() => {
-        console.log(data)
-
-        const topLevelComments = data.filter((v) => {
+        const topLevelComments = data.filter(v => {
           return v.parentId === ''
         })
 
-        const finalData = topLevelComments.map((parent) => {
-          const children = data.filter((c) => c.id === parent.id)
+        const finalData = topLevelComments.map(parent => {
+          const children = data.filter(c => c.id === parent.id)
           return {
             parent,
             children,
