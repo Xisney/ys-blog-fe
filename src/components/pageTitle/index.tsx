@@ -1,10 +1,10 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 import classNames from 'classnames'
 import style from './style.module.less'
 
 interface PageTitleProps {
   title: string
-  subTitle?: string
+  subTitle?: ReactNode
 }
 
 const PageTitle: FC<PageTitleProps> = ({ title, subTitle }) => {
@@ -15,7 +15,7 @@ const PageTitle: FC<PageTitleProps> = ({ title, subTitle }) => {
       })}
     >
       <h2>{title}</h2>
-      {subTitle && <p>{subTitle}</p>}
+      {subTitle && <div className="subTitle-wrapper">{subTitle}</div>}
     </header>
   )
 }

@@ -1,33 +1,26 @@
 import { FC } from 'react'
-import style from './style.module.less'
-import ReactMarkdown from 'react-markdown'
-import hljs from 'highlight.js'
+import { Viewer } from '@bytemd/react'
+
+import gfm from '@bytemd/plugin-gfm'
+import highlight from '@bytemd/plugin-highlight'
+import breaks from '@bytemd/plugin-breaks'
+import mediumZoom from '@bytemd/plugin-medium-zoom'
+import mermaid_2 from '@bytemd/plugin-mermaid'
 
 import './theme/markdown.less'
 import 'highlight.js/styles/github.css'
-
-import remarkGfm from 'remark-gfm'
-
-const remarkPlugins = [remarkGfm]
+import style from './style.module.less'
 
 interface CommonReader {
   content: string
 }
 
+const plugins = [gfm(), breaks(), mediumZoom(), mermaid_2(), highlight()]
+
 const CommonReader: FC<CommonReader> = ({ content }) => {
-  const parseMarkdown = (dom: HTMLDivElement | null) => {
-    if (!dom) return
-
-    dom.querySelectorAll('pre code').forEach(el => {
-      hljs.highlightElement(el as HTMLElement)
-    })
-  }
-
   return (
-    <div ref={parseMarkdown} className={style['reader-wrapper']}>
-      <ReactMarkdown className="markdown-body" remarkPlugins={remarkPlugins}>
-        {content}
-      </ReactMarkdown>
+    <div className={style['reader-wrapper']}>
+      <Viewer value={content} plugins={plugins} />
     </div>
   )
 }

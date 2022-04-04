@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, Navigate } from 'react-router-dom'
 import Header from './components/header'
 import Aside from './components/aside'
 import Footer from './components/footer'
@@ -9,6 +9,8 @@ import './theme/base.less'
 import style from './app.module.less'
 
 import Home from './pages/home'
+import NotFound from './pages/notFound'
+import Blog from './pages/blog'
 const Navigation = lazy(() => import('./pages/navigation'))
 const About = lazy(() => import('./pages/about'))
 const Archive = lazy(() => import('./pages/archive'))
@@ -26,7 +28,8 @@ const App = () => {
       <div className="body">
         <Aside />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route index element={<Home />} />
+          <Route path="/blog/:id" element={<Blog />} />
           <Route
             path="/navigation"
             element={
@@ -59,6 +62,7 @@ const App = () => {
               </Suspense>
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </div>

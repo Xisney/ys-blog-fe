@@ -1,0 +1,43 @@
+.blog-container {
+  :global {
+    .blog-main-area {
+      padding: 20px 0 0 20px;
+    }
+  }
+}
+
+:global {
+  .blog-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .markdown-navigation {
+    .title-anchor {
+      cursor: pointer;
+      user-select: none;
+      margin-bottom: 8px;
+      position: relative;
+      &::after {
+        position: absolute;
+        content: '';
+        background-color: #5e7ce0;
+        height: 3px;
+        left: 0;
+        bottom: -4px;
+        width: 0;
+        transition: width 0.3s;
+      }
+
+      &.active {
+        &::after {
+          width: 100%;
+        }
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+}

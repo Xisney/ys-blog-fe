@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import style from './style.module.less'
 import ListCard from './components/listCard'
 import Pagination from './components/pagination'
@@ -19,6 +19,11 @@ dayjs.extend(relativeTime)
 
 const Home = () => {
   const groupsAndTags = useRecoilValue(groupsAndTagsAtom)
+  const navigate = useNavigate()
+
+  const handleClickBlog = (id: number) => {
+    navigate(`blog/${id}`)
+  }
 
   return (
     <BaseContainer
@@ -46,6 +51,9 @@ const Home = () => {
                       )}
                       tags={v.tags.map(v => v.label)}
                       key={v.id}
+                      onClick={() => {
+                        handleClickBlog(v.id)
+                      }}
                     />
                   )
                 })}

@@ -9,6 +9,7 @@ interface CardProps {
   timeString: string
   tags: string[]
   imgSrc?: string
+  onClick?: () => void
 }
 
 const ListCard: FC<CardProps> = ({
@@ -18,9 +19,10 @@ const ListCard: FC<CardProps> = ({
   timeString,
   tags,
   imgSrc,
+  onClick,
 }) => {
   return (
-    <div className={style['card-container']}>
+    <div className={style['card-container']} onClick={onClick}>
       {imgSrc && <img src={imgSrc} />}
       <h3 className="card-title">{title}</h3>
       <p className="card-des">{des}</p>

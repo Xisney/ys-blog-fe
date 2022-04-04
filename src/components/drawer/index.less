@@ -1,0 +1,42 @@
+.drawer-mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #00000073;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 100;
+  transition: opacity 0.3s;
+}
+
+.drawer-mask-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer-wrapper {
+  min-width: 200px;
+  position: fixed;
+  z-index: 101;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: var(--card-bg);
+  transition: transform 0.3s;
+}
+
+.drawer-left {
+  transform: translateX(-100%);
+  left: 0;
+}
+
+.drawer-right {
+  transform: translateX(100%);
+  right: 0;
+}
+
+.drawer-wrapper-active {
+  transform: translateX(0);
+}
