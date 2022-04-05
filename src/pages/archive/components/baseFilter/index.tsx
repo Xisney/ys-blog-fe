@@ -9,6 +9,7 @@ interface BaseFilterProps {
   data: { label: string; blogNum?: number }[]
   onChange?: (data: any) => void
   apisRef: MutableRefObject<any[]>
+  defaultSelect?: string
 }
 
 const BaseFilter: FC<BaseFilterProps> = ({
@@ -17,9 +18,10 @@ const BaseFilter: FC<BaseFilterProps> = ({
   placeHolder,
   apisRef,
   onChange,
+  defaultSelect = '',
 }) => {
   const [active, setActive] = useState(false)
-  const [selected, setSelected] = useState<string>()
+  const [selected, setSelected] = useState<string>(defaultSelect)
   const [multipleSelected, setMultipleSelected] = useState<string[]>([])
 
   const handleSelectClick = (v: string) => {

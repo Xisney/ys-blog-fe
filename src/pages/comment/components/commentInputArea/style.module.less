@@ -1,6 +1,20 @@
 .commentInputArea {
   display: flex;
+  position: relative;
+  padding-top: 10px;
+  overflow: hidden;
   :global {
+    .btn() {
+      margin: 15px 20px 0 0;
+      background-color: #3a75a3;
+      color: #fff;
+      padding: 8px 15px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 120px;
+      user-select: none;
+    }
+
     .comment-inputWrapper {
       margin-left: 15px;
       flex: 1;
@@ -19,19 +33,35 @@
       margin-top: 15px;
       .comment-send {
         align-self: flex-end;
-        margin: 15px 20px 0 0;
-        background-color: #3a75a3;
-        color: #fff;
-        padding: 8px 15px;
-        font-size: 18px;
-        cursor: pointer;
-        border-radius: 120px;
-        user-select: none;
-        &:active {
-        }
-        &:hover {
-        }
+        .btn();
       }
+    }
+    .admin-login {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      width: 100%;
+      background-color: #ffdede;
+      height: 100%;
+      top: 100%;
+      transition: top 0.3s;
+      .admin-input {
+        width: 300px;
+        margin-bottom: 20px;
+      }
+      .login-btns {
+        display: flex;
+      }
+      .login-btn {
+        margin: 15px 20px 0 0;
+        .btn();
+      }
+    }
+
+    .admin-login-show {
+      top: 0;
     }
   }
 }

@@ -1,51 +1,11 @@
-import { CommentData, getCommentData } from '@src/api/comment'
+import { RequestCommentData, getCommentData } from '@src/api/comment'
+import NoData from '@src/components/noData'
 import PageTitle from '@src/components/pageTitle'
 import BaseContainer from '../components/baseContainer'
 import CommentInputArea from './components/commentInputArea'
 import CommentList from './components/commentList'
+import { CommentCtx } from './context'
 import style from './style.module.less'
-
-const data = [
-  {
-    id: '1',
-    parentId: '',
-    content: '发动机卡达开发',
-    creator: {
-      avatar: '',
-      nickname: 'sfdsf',
-      mail: '233423@qq.com',
-      homePage: 'sdfsfa',
-      isAdmin: false,
-    },
-    publishTime: 1647782010946,
-  },
-  {
-    id: '2',
-    parentId: '1',
-    content: '发动机卡达开发',
-    creator: {
-      avatar: '',
-      nickname: 'sfdsf',
-      mail: '233423@qq.com',
-      homePage: 'sdfsfa',
-      isAdmin: true,
-    },
-    publishTime: 1647702010946,
-  },
-  {
-    id: '3',
-    parentId: '',
-    content: '发动机卡达开发',
-    creator: {
-      avatar: '',
-      nickname: 'sfdsf',
-      mail: '233423@qq.com',
-      homePage: 'sdfsfa',
-      isAdmin: true,
-    },
-    publishTime: 1647781010946,
-  },
-]
 
 const Comment = () => {
   return (
@@ -53,36 +13,45 @@ const Comment = () => {
       getData={getCommentData}
       className={style['comment-container']}
     >
-      {() => {
+      {({ data }: RequestCommentData, setData) => {
+        data.sort(
+          (a, b) =>
+            new Date(b.publishTime).getTime() -
+            new Date(a.publishTime).getTime()
+        )
         const topLevelComments = data.filter(v => {
-          return v.parentId === ''
+          return v.parentId === 0
         })
 
         const finalData = topLevelComments.map(parent => {
-          const children = data.filter(c => c.id === parent.id)
+          const children = data.filter(c => c.parentId === parent.id)
           return {
             parent,
             children,
           }
         })
 
-        console.log(finalData, 'ss')
-
         return (
           <>
             <PageTitle title="留言板" />
-            <div className="comment-mainArea">
-              <div className="comment-header">
-                欢迎来到 <span style={{ color: 'pink' }}>YS</span> 的博客
-                <br />
-                你可以在这里留言交流
-                <br />
-                来看看吧~
+            <CommentCtx value={setData}>
+              <div className="comment-mainArea">
+                <div className="comment-header">
+                  欢迎来到 <span style={{ color: 'pink' }}>YS</span> 的博客
+                  <br />
+                  你可以在这里留言交流
+                  <br />
+                  来看看吧~
+                </div>
+                <div className="comment-division" />
+                <CommentInputArea />
+                {finalData.length === 0 ? (
+                  <NoData />
+                ) : (
+                  <CommentList data={finalData} />
+                )}
               </div>
-              <div className="comment-division" />
-              <CommentInputArea />
-              <CommentList data={finalData} />
-            </div>
+            </CommentCtx>
           </>
         )
       }}

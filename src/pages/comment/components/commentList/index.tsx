@@ -1,5 +1,5 @@
 import { CommentData } from '@src/api/comment'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import CommentListItem from '../commentListItem'
 
 interface CommentListProps {
@@ -10,27 +10,42 @@ interface CommentListProps {
 }
 
 const CommentList: FC<CommentListProps> = ({ data }) => {
+  const [showReplyIndex, setShowReplyIndex] = useState(-1)
+
+  useEffect(() => {
+    setShowReplyIndex(-1)
+  }, [data])
+
   return (
     <div className="commentList-wrapper">
-      {data.map(({ parent, children }) => {
+      {data.map(({ parent, children }, i) => {
         return (
           <CommentListItem
-            avatar={parent.creator.avatar}
+            avatar={parent.avatar}
             timestamp={parent.publishTime}
             content={parent.content}
             showReply
-            nickname={parent.creator.nickname}
-            isAdmin={parent.creator.isAdmin}
-            childrenComments={children?.map((c) => {
+            nickname={parent.nickname}
+            isAdmin={parent.isAdmin}
+            id={parent.id}
+            childrenComments={children?.map(c => {
               return {
-                avatar: c.creator.avatar,
+                avatar: c.avatar,
                 timestamp: c.publishTime,
                 content: c.content,
-                nickname: c.creator.nickname,
-                isAdmin: c.creator.isAdmin,
+                nickname: c.nickname,
+                isAdmin: c.isAdmin,
                 id: c.id,
               }
             })}
+            onReply={() => {
+              if (i === showReplyIndex) {
+                setShowReplyIndex(-1)
+              } else {
+                setShowReplyIndex(i)
+              }
+            }}
+            showReplyArea={showReplyIndex === i}
             key={parent.id}
           />
         )

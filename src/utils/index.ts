@@ -36,7 +36,7 @@ export function isValidEmail(data: string) {
 }
 
 export function isValidQQ(data: string) {
-  return /[1-9][0-9]{4,}/.test(data)
+  return /^[1-9][0-9]{4,}$/.test(data)
 }
 
 export function isValidUrl(data: string) {

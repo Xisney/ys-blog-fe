@@ -9,7 +9,7 @@ import './theme/base.less'
 import style from './app.module.less'
 
 import Home from './pages/home'
-import NotFound from './pages/notFound'
+import NotFound from './pages/404'
 import Blog from './pages/blog'
 const Navigation = lazy(() => import('./pages/navigation'))
 const About = lazy(() => import('./pages/about'))

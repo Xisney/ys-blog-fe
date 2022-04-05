@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { getOrderedArray } from './utils'
 
 export function usePageNum(total: number, pageSize: number) {
-  const pageNum = useMemo(() => Math.floor(total / pageSize), [total, pageSize])
+  const pageNum = useMemo(() => Math.ceil(total / pageSize), [total, pageSize])
   return pageNum
 }
 

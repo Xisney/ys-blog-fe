@@ -15,7 +15,7 @@ interface CommonReader {
   content: string
 }
 
-const plugins = [gfm(), breaks(), mediumZoom(), mermaid_2(), highlight()]
+const plugins = [gfm(), highlight(), breaks(), mediumZoom(), mermaid_2()]
 
 const CommonReader: FC<CommonReader> = ({ content }) => {
   return (

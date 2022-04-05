@@ -43,6 +43,7 @@ const LabelInput: FC<LabelInputProps> = ({
         onChange={onChange}
         value={value}
         onBlur={onBlur}
+        autoComplete="off"
       />
       <label htmlFor="textInput">{label}</label>
     </div>

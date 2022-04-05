@@ -1,5 +1,6 @@
 import { ArchiveItem } from '@src/api/archive'
-import { FC, useRef } from 'react'
+import { FC, useEffect, useRef } from 'react'
+import { useLocation } from 'react-router-dom'
 import BaseFilter from '../baseFilter'
 import style from './style.module.less'
 
@@ -19,6 +20,28 @@ const ArchiveFilter: FC<ArchiveFilterProps> = ({
   const stateRef = useRef([])
   const cacheRef = useRef<ArchiveItem[]>(data)
 
+  const { state } = useLocation()
+
+  const changeLabel = (label: string) => {
+    const originData = cacheRef.current
+    setData({
+      data: originData
+        .map(({ archiveTime, blogs }) => {
+          return {
+            archiveTime,
+            blogs: blogs.filter(({ group }) => group.label === label),
+          }
+        })
+        .filter(v => v.blogs.length !== 0),
+    })
+  }
+
+  useEffect(() => {
+    if (!state) return
+
+    changeLabel(state as string)
+  }, [])
+
   const handleGroupChange = (label: string | string[]) => {
     const originData = cacheRef.current
 
@@ -28,16 +51,7 @@ const ArchiveFilter: FC<ArchiveFilterProps> = ({
     }
 
     if (typeof label === 'string') {
-      setData({
-        data: originData
-          .map(({ archiveTime, blogs }) => {
-            return {
-              archiveTime,
-              blogs: blogs.filter(({ group }) => group.label === label),
-            }
-          })
-          .filter(v => v.blogs.length !== 0),
-      })
+      changeLabel(label)
     } else if (Array.isArray(label)) {
       setData({
         data: originData
@@ -71,6 +85,7 @@ const ArchiveFilter: FC<ArchiveFilterProps> = ({
           placeHolder="请选择文章分组"
           apisRef={stateRef}
           onChange={handleGroupChange}
+          defaultSelect={state as string}
         />
       </div>
       <div className="archiveFilter-item">
