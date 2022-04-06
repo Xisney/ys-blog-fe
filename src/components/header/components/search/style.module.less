@@ -14,16 +14,16 @@
       color: var(--text-color-l);
       font-size: 14px;
       font-weight: 400;
-      transition: all .3s;
-      &:hover{
+      transition: all 0.3s;
+      &:hover {
         background-color: #e0e6ed;
       }
-      &:focus{
+      &:focus {
         background-color: #fff;
         border: 2px solid #20a0ff;
       }
     }
-    .icon-area{
+    .icon-area {
       background-color: #fff;
       width: 30px;
       display: flex;
@@ -32,10 +32,28 @@
       cursor: pointer;
     }
     .search-icon {
-      svg{
+      svg {
         width: 18px;
         height: 18px;
       }
+    }
+  }
+}
+
+:global {
+  body.dark {
+    #text-input {
+      background-color: #181a1b;
+      &:hover {
+        background-color: rgb(38, 41, 43);
+      }
+      &:focus {
+        background-color: rgb(24, 26, 27);
+        border-color: rgb(0, 97, 169);
+      }
+    }
+    .icon-area {
+      background-color: rgb(24, 26, 27);
     }
   }
 }

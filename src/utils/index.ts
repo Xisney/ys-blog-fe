@@ -2,7 +2,7 @@ export function throttle(
   fn: Function,
   interval: number = 500,
   ...args: any
-): EventListenerOrEventListenerObject {
+): any {
   let flag = true
   return () => {
     if (!flag) return
@@ -19,7 +19,7 @@ export function debounce(
   fn: Function,
   interval: number = 500,
   ...args: any
-): EventListenerOrEventListenerObject {
+): any {
   let timer: number
   return () => {
     if (timer) {

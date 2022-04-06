@@ -35,3 +35,25 @@
     }
   }
 }
+
+:global {
+  body.dark {
+    :local {
+      .labelInput-wrapper {
+        :global {
+          label {
+            background-color: rgb(24, 26, 27);
+          }
+          #textInput {
+            border-color: rgb(84, 91, 94);
+            background-color: #181a1b;
+            color: #e8e6e3;
+            &:focus {
+              border-color: rgb(0, 129, 185);
+            }
+          }
+        }
+      }
+    }
+  }
+}

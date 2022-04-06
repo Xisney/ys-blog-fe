@@ -1,4 +1,4 @@
-.header{
+.header {
   height: 50px;
   background-color: var(--bg-white);
   box-shadow: 0 1px 4px 1px rgb(0 0 0 / 5%);
@@ -7,8 +7,8 @@
   width: 1170px;
   display: flex;
   align-items: center;
-  :global{
-    .header-logo{
+  :global {
+    .header-logo {
       font-size: 20px;
       font-stretch: 100%;
       font-weight: 700;
@@ -17,24 +17,34 @@
       line-height: 50px;
       padding: 0 20px;
       cursor: pointer;
-      .logo-text{
+      .logo-text {
         margin-left: 15px;
       }
     }
 
-    .header-search{
+    .header-search {
       margin-left: 150px;
     }
 
-    .switch-theme{
+    .switch-theme {
       display: flex;
       align-items: center;
       cursor: pointer;
       height: 30px;
       margin-left: 15px;
-      svg{
+      svg {
         width: 24px;
         height: 24px;
+      }
+    }
+  }
+}
+
+:global {
+  body.dark {
+    .switch-theme {
+      svg {
+        fill: rgb(232, 230, 227);
       }
     }
   }

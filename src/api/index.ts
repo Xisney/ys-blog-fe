@@ -5,6 +5,7 @@ const BASE_URL = 'http://localhost:3001/api/blog'
 const apiInstance = axios.create({
   baseURL: BASE_URL,
   timeout: 9000,
+  withCredentials: true,
 })
 
 export function httpRequest(url: string, config?: AxiosRequestConfig) {
@@ -18,6 +19,5 @@ export function httpPostJsonRequest(url: string, data: any) {
       'Content-Type': 'application/json; charset=utf-8',
     },
     data,
-    withCredentials: true,
   })
 }

@@ -78,3 +78,33 @@
     }
   }
 }
+
+:global {
+  body.dark {
+    .filter-select {
+      border-color: rgb(59, 64, 66);
+      &:hover {
+        background-color: rgb(38, 41, 43);
+        border-color: rgb(0, 97, 169);
+      }
+      .filter-multipleItem {
+        background-color: rgb(30, 32, 33);
+      }
+    }
+    .filter-options {
+      box-shadow: rgb(14 14 21 / 5%) 0px 4px 16px,
+        rgb(14 14 21 / 5%) 0px 8px 32px;
+      li {
+        &.selected {
+          background-color: rgb(43, 46, 48);
+        }
+        &:hover:not(.selected) {
+          background-color: rgb(30, 32, 33);
+        }
+        .filter-checkIcon {
+          color: rgb(96, 183, 255);
+        }
+      }
+    }
+  }
+}
