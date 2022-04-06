@@ -1,10 +1,12 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import Avatar from '../avatar'
 import style from './style.module.less'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { MessageOutlined } from '@ant-design/icons'
 import CommentInputArea from '../commentInputArea'
+import { openUrlBlank } from '@src/utils'
+import cx from 'classnames'
 
 dayjs.extend(relativeTime)
 
@@ -15,6 +17,7 @@ interface CommentItem {
   nickname: string
   showReply?: boolean
   isAdmin?: boolean
+  homepage?: string
 }
 
 interface CommentListItemProps extends CommentItem {
@@ -35,6 +38,7 @@ const CommentListItem: FC<CommentListItemProps> = ({
   onReply,
   showReplyArea,
   id,
+  homepage,
 }) => {
   return (
     <div className={style['commentItem-wrapper']}>
@@ -42,7 +46,15 @@ const CommentListItem: FC<CommentListItemProps> = ({
       <div className="commentItem-info">
         <div className="commentItem-info-header">
           <div className="comment-creator">
-            <span className="comment-nickname">{nickname}</span>
+            <span
+              className={cx('comment-nickname', { hasUrl: homepage })}
+              onClick={() => {
+                if (!homepage) return
+                openUrlBlank(homepage)
+              }}
+            >
+              {nickname}
+            </span>
             {isAdmin && <span className="comment-adminLabel">站长</span>}
             <span className="comment-time">{dayjs(timestamp).toNow()}</span>
           </div>

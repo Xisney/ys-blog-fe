@@ -44,3 +44,10 @@ export function isValidUrl(data: string) {
     data
   )
 }
+
+export function openUrlBlank(url: string) {
+  const a = document.createElement('a')
+  a.href = url
+  a.target = '_blank'
+  a.click()
+}

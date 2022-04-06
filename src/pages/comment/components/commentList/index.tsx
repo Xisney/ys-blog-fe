@@ -28,6 +28,7 @@ const CommentList: FC<CommentListProps> = ({ data }) => {
             nickname={parent.nickname}
             isAdmin={parent.isAdmin}
             id={parent.id}
+            homepage={parent.homepage}
             childrenComments={children?.map(c => {
               return {
                 avatar: c.avatar,
@@ -36,6 +37,7 @@ const CommentList: FC<CommentListProps> = ({ data }) => {
                 nickname: c.nickname,
                 isAdmin: c.isAdmin,
                 id: c.id,
+                homepage: c.homepage,
               }
             })}
             onReply={() => {

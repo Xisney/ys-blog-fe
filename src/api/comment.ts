@@ -25,8 +25,19 @@ export function getAvatarData(qqNumber: string) {
   return httpRequest(`https://q1.qlogo.cn/g?b=qq&nk=${qqNumber}&s=640`)
 }
 
-export type SendCommentData = Omit<CommentData, 'id' | 'publishTime'>
+export type SendCommentData = Omit<
+  CommentData,
+  'id' | 'publishTime' | 'isAdmin'
+>
 
 export function sendComment(data: SendCommentData) {
   return httpPostJsonRequest('sendCommit', data)
+}
+
+export function login(data: { email: string; psw: string }) {
+  return httpPostJsonRequest('login', data)
+}
+
+export function isLogin() {
+  return httpRequest('isLogin')
 }

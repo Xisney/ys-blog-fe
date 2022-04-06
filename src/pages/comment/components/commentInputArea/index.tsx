@@ -6,7 +6,7 @@ import { User } from '../../consts'
 import { isValidEmail, isValidQQ, isValidUrl } from '@src/utils'
 import { message } from 'antd'
 import Avatar from '../avatar'
-import { sendComment, SendCommentData } from '@src/api/comment'
+import { login, sendComment, SendCommentData } from '@src/api/comment'
 import { commentDataContext } from '../../context'
 import cx from 'classnames'
 
@@ -51,9 +51,6 @@ const CommentInputArea: FC<CommentInputAreaProps> = ({
       }
     } else {
       if (nickname.toLowerCase() === 'admin') {
-        message.success('YS welcome!')
-        // todo 验证登录，获取token，之后留言判断是否含有token请求头
-        // 后端写入isAdmin
         setShowLogin(true)
       } else {
         localStorage.setItem(User.nickname, nickname)
@@ -88,14 +85,13 @@ const CommentInputArea: FC<CommentInputAreaProps> = ({
       avatar,
       homepage,
       content,
-      isAdmin: false,
       parentId: parentId ?? 0,
     }
 
     message.loading({ content: '提交中...', key: 'submitComment' })
     const {
       data: {
-        data: { id, publishTime },
+        data: { id, publishTime, isAdmin },
         code,
       },
     } = await sendComment(sendData)
@@ -107,7 +103,7 @@ const CommentInputArea: FC<CommentInputAreaProps> = ({
       setData((preData: any) => {
         return {
           ...preData,
-          data: [{ ...sendData, id, publishTime }, ...preData.data],
+          data: [{ ...sendData, id, publishTime, isAdmin }, ...preData.data],
         }
       })
       setContent('')
@@ -165,7 +161,26 @@ const CommentInputArea: FC<CommentInputAreaProps> = ({
         onClose={() => {
           setShowLogin(false)
         }}
-        onConfirm={() => {}}
+        onConfirm={async (email, psw) => {
+          const {
+            data: { code },
+          } = await login({ email, psw })
+
+          if (code === -1) {
+            message.error('用户名或密码异常，登录失败')
+            return
+          }
+
+          setShowLogin(false)
+          message.success('欢迎你,YS')
+          setNickname('YS')
+          localStorage.setItem(User.nickname, 'YS')
+          setAvatar(`https://q1.qlogo.cn/g?b=qq&nk=2105642104&s=640`)
+          localStorage.setItem(
+            User.avatar,
+            'https://q1.qlogo.cn/g?b=qq&nk=2105642104&s=640'
+          )
+        }}
       />
     </div>
   )
@@ -199,6 +214,7 @@ const AdminLogin: FC<AdminLoginProps> = ({ show, onClose, onConfirm }) => {
           onChange={e => {
             setPsw(e.target.value.trim())
           }}
+          type="password"
         />
       </div>
       <div className="login-btns">

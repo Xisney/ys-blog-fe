@@ -18,5 +18,6 @@ export function httpPostJsonRequest(url: string, data: any) {
       'Content-Type': 'application/json; charset=utf-8',
     },
     data,
+    withCredentials: true,
   })
 }

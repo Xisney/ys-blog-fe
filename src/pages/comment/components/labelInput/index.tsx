@@ -15,6 +15,7 @@ interface LabelInputProps {
   onChange?: ChangeEventHandler<HTMLInputElement>
   onBlur?: FocusEventHandler<HTMLInputElement>
   value?: string
+  type?: 'text' | 'password'
 }
 
 const LabelInput: FC<LabelInputProps> = ({
@@ -24,6 +25,7 @@ const LabelInput: FC<LabelInputProps> = ({
   onChange,
   onBlur,
   value,
+  type,
 }) => {
   const handleEnterInput = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key !== 'Enter') return
@@ -36,7 +38,7 @@ const LabelInput: FC<LabelInputProps> = ({
   return (
     <div className={cx(style['labelInput-wrapper'], className)}>
       <input
-        type="text"
+        type={type}
         id="textInput"
         placeholder={placeHolder}
         onKeyDown={handleEnterInput}
