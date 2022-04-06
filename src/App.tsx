@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { Route, Routes, Navigate } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Header from './components/header'
 import Aside from './components/aside'
 import Footer from './components/footer'
@@ -19,6 +19,7 @@ const Comment = lazy(() => import('./pages/comment'))
 // dayjs 全局中文
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
+import Loading from './components/loading'
 dayjs.locale('zh-cn')
 
 const App = () => {
@@ -33,7 +34,13 @@ const App = () => {
           <Route
             path="/navigation"
             element={
-              <Suspense fallback={<h2>pending...</h2>}>
+              <Suspense
+                fallback={
+                  <div>
+                    <Loading.RouteLoading />
+                  </div>
+                }
+              >
                 <Navigation />
               </Suspense>
             }
@@ -41,7 +48,7 @@ const App = () => {
           <Route
             path="/about"
             element={
-              <Suspense fallback={<h2>pending...</h2>}>
+              <Suspense fallback={<Loading.RouteLoading />}>
                 <About />
               </Suspense>
             }
@@ -49,7 +56,7 @@ const App = () => {
           <Route
             path="/archive"
             element={
-              <Suspense fallback={<h2>pending...</h2>}>
+              <Suspense fallback={<Loading.RouteLoading />}>
                 <Archive />
               </Suspense>
             }
@@ -57,7 +64,7 @@ const App = () => {
           <Route
             path="/comment"
             element={
-              <Suspense fallback={<h2>pending...</h2>}>
+              <Suspense fallback={<Loading.RouteLoading />}>
                 <Comment />
               </Suspense>
             }

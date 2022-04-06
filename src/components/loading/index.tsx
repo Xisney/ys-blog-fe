@@ -9,4 +9,12 @@ const Loading = () => {
   )
 }
 
+Loading.RouteLoading = () => {
+  return (
+    <div>
+      <Loading />
+    </div>
+  )
+}
+
 export default Loading
