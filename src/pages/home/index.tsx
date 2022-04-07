@@ -5,9 +5,8 @@ import Clock from './components/clock'
 import PageTitle from '@src/components/pageTitle'
 import BaseContainer from '../components/baseContainer'
 import { getHomeBaseData, HomeBaseData, getHomePoemData } from '@src/api/home'
-import { groupsAndTagsAtom } from '@src/atom'
+import { ArticleListAtom, groupsAndTagsAtom } from '@src/atom'
 import { useRecoilValue } from 'recoil'
-import { ArticleList, getArticleList } from '@src/api/common'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import BlogList from './components/blogList'
@@ -20,21 +19,19 @@ const Home = () => {
   const groupsAndTags = useRecoilValue(groupsAndTagsAtom)
   const navigate = useNavigate()
 
+  const articles = useRecoilValue(ArticleListAtom)
+
   return (
     <BaseContainer
       className={style['home-container']}
-      getData={[getHomeBaseData, getHomePoemData, getArticleList]}
+      getData={[getHomeBaseData, getHomePoemData]}
     >
-      {([baseData, poemData, articleList]: [
-        HomeBaseData,
-        string,
-        ArticleList
-      ]) => {
+      {([baseData, poemData]: [HomeBaseData, string]) => {
         return (
           <>
             <main className="home-main">
               <PageTitle title="沉梦昂志" subTitle={poemData} />
-              <BlogList data={articleList.data} />
+              <BlogList data={articles || []} />
             </main>
             <aside className="home-aside">
               <InfoCard

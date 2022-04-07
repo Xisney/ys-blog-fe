@@ -35,6 +35,7 @@ const Blog = () => {
     const blogId = parseInt(id)
     if (Object.is(blogId, NaN)) navigate('/')
 
+    setLoading(true)
     getBlogContent({ id: blogId })
       .then(({ data: { data, code } }) => {
         if (code === -1) throw '服务异常，获取文章内容失败'
@@ -47,7 +48,7 @@ const Blog = () => {
       .finally(() => {
         setLoading(false)
       })
-  }, [])
+  }, [id])
 
   return (
     <div className={style['blog-container']}>

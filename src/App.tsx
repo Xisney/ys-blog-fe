@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Header from './components/header'
 import Aside from './components/aside'
@@ -20,10 +20,33 @@ const Comment = lazy(() => import('./pages/comment'))
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import Loading from './components/loading'
+import { getArticleList } from './api/common'
+import { useSetRecoilState } from 'recoil'
+import { ArticleListAtom } from './atom'
 dayjs.locale('zh-cn')
 
 const App = () => {
-  return (
+  const [loading, setLoading] = useState(true)
+  const setArticleList = useSetRecoilState(ArticleListAtom)
+
+  useEffect(() => {
+    getArticleList()
+      .then(({ data: { data, code } }) => {
+        if (code === -1) throw '服务异常'
+
+        setArticleList(data)
+      })
+      .catch(e => {
+        console.log(e)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }, [])
+
+  return loading ? (
+    <Loading />
+  ) : (
     <div className={style['app-container']}>
       <Header />
       <div className="body">

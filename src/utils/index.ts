@@ -15,13 +15,9 @@ export function throttle(
   }
 }
 
-export function debounce(
-  fn: Function,
-  interval: number = 500,
-  ...args: any
-): any {
+export function debounce(fn: Function, interval: number = 500): any {
   let timer: number
-  return () => {
+  return (...args: any) => {
     if (timer) {
       clearTimeout(timer)
     }

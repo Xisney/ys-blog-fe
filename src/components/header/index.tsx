@@ -38,7 +38,7 @@ const Header = () => {
     <div className={style.header}>
       <div className="header-logo">
         <HomeFilled />
-        <span className="logo-text">YS</span>
+        <span className="logo-text">Yusheng</span>
       </div>
       <Search className="header-search" />
       <div className="switch-theme" onClick={handleChangeTheme}>

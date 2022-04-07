@@ -1,3 +1,4 @@
+import { Article } from '@src/api/common'
 import { atom } from 'recoil'
 
 interface GroupsAndTags {
@@ -17,5 +18,10 @@ interface GroupsAndTags {
 
 export const groupsAndTagsAtom = atom<GroupsAndTags | null>({
   key: 'groupAndTagsAtom',
+  default: null,
+})
+
+export const ArticleListAtom = atom<Article[] | null>({
+  key: 'ArticleListAtom',
   default: null,
 })
