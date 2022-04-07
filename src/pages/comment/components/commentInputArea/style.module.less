@@ -26,6 +26,15 @@
       .comment-header-input {
         width: 30%;
       }
+      @media screen and (max-width: 992px) {
+        flex-wrap: wrap;
+        .comment-header-input {
+          width: 100%;
+          &:not(:last-child) {
+            margin-bottom: 20px;
+          }
+        }
+      }
     }
     .commentInput-bottom {
       display: flex;

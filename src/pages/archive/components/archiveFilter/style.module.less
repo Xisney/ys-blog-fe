@@ -4,11 +4,22 @@
   margin: 20px 0 0 20px;
   padding: 20px;
   background-color: var(--card-bg);
+  @media screen and (max-width: 992px) {
+    flex-direction: column;
+  }
+  @media screen and (max-width: 768px) {
+    margin-right: 20px;
+  }
   :global {
     animation: fromRightIn 0.5s;
     .archiveFilter-item {
       display: flex;
       align-items: center;
+      @media screen and (max-width: 992px) {
+        &:not(:last-child) {
+          margin-bottom: 20px;
+        }
+      }
     }
   }
 }

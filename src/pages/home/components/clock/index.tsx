@@ -3,6 +3,7 @@ import { GaugeChart, GaugeSeriesOption } from 'echarts/charts'
 import { CanvasRenderer } from 'echarts/renderers'
 import { useEffect, useRef } from 'react'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
+import style from './style.module.less'
 
 echarts.use([GaugeChart, CanvasRenderer])
 
@@ -238,6 +239,7 @@ const Clock = () => {
         height: 440,
         transform: 'translate(-25%, -25%) scale(.5)',
       }}
+      className={style['clock-wrapper']}
     />
   )
 }

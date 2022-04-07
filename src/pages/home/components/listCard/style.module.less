@@ -1,6 +1,5 @@
 .card-container {
   background-color: var(--card-bg);
-  padding: 20px 25px;
   cursor: pointer;
   border-radius: 6px;
   margin-bottom: 20px;
@@ -60,5 +59,20 @@
     .card-des {
       border-bottom-color: rgb(52, 56, 58);
     }
+  }
+}
+
+.card-container {
+  @media screen and (max-width: 768px) {
+    padding: 10px 15px;
+  }
+  @media screen and (min-width: 768px) {
+    padding: 10px 15px;
+  }
+  @media screen and (min-width: 992px) {
+    padding: 10px 15px;
+  }
+  @media screen and (min-width: 1200px) {
+    padding: 20px 25px;
   }
 }

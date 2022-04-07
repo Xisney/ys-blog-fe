@@ -10,7 +10,7 @@ const NavAnchor: FC<NavAnchorProps> = ({ anchorList }) => {
     <ul className={style['navAnchor-container']}>
       {anchorList?.map((v, i) => {
         return (
-          <li key={i}>
+          <li key={i} className="title-anchor">
             <a href={`#${v}`}>{v}</a>
           </li>
         )

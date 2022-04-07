@@ -1,6 +1,12 @@
 .baseFilter-container {
   position: relative;
   width: 300px;
+  @media screen and (max-width: 1200px) {
+    width: 200px;
+  }
+  @media screen and (max-width: 992px) {
+    flex: 1;
+  }
   :global {
     .filter-select {
       display: flex;

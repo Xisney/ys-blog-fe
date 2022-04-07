@@ -2,6 +2,9 @@
   background-color: var(--card-bg);
   padding: 20px;
   margin: 20px 0 0 20px;
+  @media screen and (max-width: 768px) {
+    margin-left: 0;
+  }
   :global {
     animation: containerFromBottomIn 0.5s;
     .navCard-anchor {
@@ -16,6 +19,9 @@
     .navCards-wrapper {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
+      @media screen and (max-width: 992px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   }
 }

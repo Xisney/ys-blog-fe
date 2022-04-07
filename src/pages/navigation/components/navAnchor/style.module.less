@@ -3,28 +3,31 @@
     animation: fadeIn 2s;
   }
   :global {
-    position: fixed;
-    right: 70px;
-    top: 50%;
-    transform: translateY(-50%);
-    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
-      rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
-    li {
-      font-size: 0;
-      a {
-        display: inline-block;
-        color: var(--text-color-m);
-        font-size: 14px;
-        height: 30px;
-        line-height: 30px;
-        padding: 0 5px;
-        background-color: var(--card-bg);
+    li.title-anchor {
+      cursor: pointer;
+      user-select: none;
+      margin-bottom: 8px;
+      position: relative;
+      width: fit-content;
+      &::after {
+        position: absolute;
+        content: '';
+        background-color: #5e7ce0;
+        height: 3px;
+        left: 0;
+        bottom: -4px;
+        width: 0;
+        transition: width 0.3s;
+      }
 
-        &:hover {
-          background-color: #000;
-          color: #fff;
-          transition: all 0.3s;
+      &.active {
+        &::after {
+          width: 100%;
         }
+      }
+
+      &:hover::after {
+        width: 100%;
       }
     }
   }

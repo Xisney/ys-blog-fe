@@ -1,5 +1,8 @@
 .home-container {
   display: flex;
+  @media screen and (max-width: 992px) {
+    flex-direction: column;
+  }
   :global {
     .home-main {
       flex: 1;
@@ -22,11 +25,25 @@
       .home-card-list {
         background-color: var(--bg-main);
         padding: 20px;
+        @media screen and (max-width: 992px) {
+          padding-right: 0;
+        }
+        @media screen and (max-width: 768px) {
+          padding-right: 20px;
+        }
       }
     }
     .home-aside {
       width: 220px;
       background-color: var(--bg-white);
+      @media screen and (max-width: 992px) {
+        width: calc(100% - 20px);
+        margin: 0 0 20px 20px;
+      }
+      @media screen and (max-width: 768px) {
+        width: calc(100% - 40px);
+        margin-right: 20px;
+      }
     }
   }
 }

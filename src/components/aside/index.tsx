@@ -8,10 +8,15 @@ import {
   TagOutlined,
   MessageOutlined,
 } from '@ant-design/icons'
+import cx from 'classnames'
 
-const Aside = () => {
+interface AsideProps {
+  className?: string
+}
+
+const Aside = ({ className }: AsideProps) => {
   return (
-    <div className={style.aside}>
+    <div className={cx(style.aside, className)}>
       <div className="info-area">
         <img src="/ys.png" alt="avatar" />
         <p>Yusheng</p>

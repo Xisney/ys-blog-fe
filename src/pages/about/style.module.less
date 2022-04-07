@@ -3,6 +3,10 @@
     .about-mainArea {
       margin: 20px 0 0 20px;
       animation: containerFromBottomIn 0.5s;
+      @media screen and (max-width: 768px) {
+        width: calc(100% - 40px);
+        margin-right: 20px;
+      }
     }
     .card-wrapper {
       background-color: var(--card-bg);

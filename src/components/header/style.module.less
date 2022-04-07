@@ -1,12 +1,17 @@
+@import (reference) '../../theme/response.less';
+
 .header {
   height: 50px;
   background-color: var(--bg-white);
   box-shadow: 0 1px 4px 1px rgb(0 0 0 / 5%);
   position: fixed;
   z-index: 100;
-  width: 1170px;
   display: flex;
   align-items: center;
+  @media screen and (max-width: 768px) {
+    justify-content: space-between;
+    padding: 0 25px;
+  }
   :global {
     .header-logo {
       font-size: 20px;
@@ -20,10 +25,24 @@
       .logo-text {
         margin-left: 15px;
       }
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    .header-menu {
+      display: none;
+      @media screen and (max-width: 768px) {
+        display: block;
+        cursor: pointer;
+      }
     }
 
     .header-search {
       margin-left: 150px;
+      @media screen and (max-width: 768px) {
+        margin-left: 0;
+      }
     }
 
     .switch-theme {
@@ -45,6 +64,27 @@
     .switch-theme {
       svg {
         fill: rgb(232, 230, 227);
+      }
+    }
+  }
+}
+
+.header {
+  .response();
+}
+
+:global {
+  .header-menu-drawer {
+    display: none;
+    @media screen and (max-width: 768px) {
+      display: block;
+      width: 220px;
+      overflow-x: hidden;
+    }
+    .aside-Indrawer {
+      @media screen and (max-width: 768px) {
+        display: block;
+        height: 100vh;
       }
     }
   }

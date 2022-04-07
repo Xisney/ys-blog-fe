@@ -3,6 +3,9 @@
   height: calc(100vh - 50px);
   position: fixed;
   background-color: var(--bg-white);
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
   :global {
     .info-area {
       height: 200px;

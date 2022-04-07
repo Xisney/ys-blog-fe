@@ -7,6 +7,9 @@
   border: 1px solid #e4ecf3;
   box-shadow: 1px 2px 3px #f2f6f8;
   transition: all 0.3s;
+  @media screen and (max-width: 1200px) {
+    margin-bottom: 15px;
+  }
   :global {
     .navCardItem-top {
       display: flex;
@@ -29,6 +32,7 @@
       font-size: 14px;
       color: var(--text-color-l);
       line-height: 1.5em;
+      word-break: break-all;
     }
   }
   &:hover {
