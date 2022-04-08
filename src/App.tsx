@@ -57,13 +57,7 @@ const App = () => {
           <Route
             path="/navigation"
             element={
-              <Suspense
-                fallback={
-                  <div>
-                    <Loading.RouteLoading />
-                  </div>
-                }
-              >
+              <Suspense fallback={<Loading.RouteLoading />}>
                 <Navigation />
               </Suspense>
             }
