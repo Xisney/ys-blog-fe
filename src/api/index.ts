@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios'
 
-const BASE_URL = 'http://localhost:3001/api/blog'
+const BASE_URL = 'http://47.107.76.201/api/blog'
 
 const apiInstance = axios.create({
   baseURL: BASE_URL,
