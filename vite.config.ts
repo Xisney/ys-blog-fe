@@ -6,14 +6,15 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), svgrPlugin()],
+  base: '/',
   css: {
     modules: {
       generateScopedName: '[local]_[hash:4]',
     },
   },
-  resolve:{
+  resolve: {
     alias: {
-      '@src': path.resolve(__dirname,'./src')
-    }
-  }
+      '@src': path.resolve(__dirname, './src'),
+    },
+  },
 })

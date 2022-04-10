@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { HomeFilled, MenuOutlined } from '@ant-design/icons'
 import style from './style.module.less'
 import Search from './components/search'
@@ -7,6 +7,7 @@ import { ReactComponent as Moon } from './static/moon.svg'
 import { debounce } from '@src/utils'
 import Drawer from '../drawer'
 import Aside from '../aside'
+import { useLocation } from 'react-router-dom'
 
 enum Theme {
   light = 'light',
@@ -37,6 +38,12 @@ const Header = () => {
       document.body.classList.remove('dark')
     }
   }, [theme])
+
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    setShow(false)
+  }, [pathname])
 
   return (
     <div className={style.header}>
