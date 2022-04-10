@@ -7,12 +7,13 @@ import { useParams, useNavigate } from 'react-router-dom'
 import ErrorTips from '../components/errorTips'
 import BlogSubTitle from './components/blogSubTitle'
 import MarkdownNavbar from 'markdown-navbar'
-import { AudioOutlined } from '@ant-design/icons'
+import { ArticleListAtom } from '@src/atom'
 
 import style from './style.module.less'
 import BlogNavBtn from './components/blogNavBtn'
 import Drawer from '@src/components/drawer'
 import Speech from './components/speechSynthesis'
+import { useSetRecoilState } from 'recoil'
 
 interface BlogState {
   content: string
@@ -27,6 +28,7 @@ const Blog = () => {
   const [errorMsg, setErrorMsg] = useState('')
 
   const [blog, setBlog] = useState<BlogState>()
+  const setArticles = useSetRecoilState(ArticleListAtom)
 
   const { id = '' } = useParams<{ id: string }>()
   const navigate = useNavigate()
@@ -43,6 +45,17 @@ const Blog = () => {
         if (code === -1) throw '服务异常，获取文章内容失败'
 
         setBlog(data)
+        setArticles(preData => {
+          if (!preData) return null
+
+          return preData.map(blog => {
+            if (blog.id === blogId) {
+              return { ...blog, viewCount: blog.viewCount + 1 }
+            }
+
+            return blog
+          })
+        })
       })
       .catch(e => {
         setErrorMsg(e)
