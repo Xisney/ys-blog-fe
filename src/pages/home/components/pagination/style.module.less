@@ -3,6 +3,11 @@
   display: flex;
   justify-content: center;
   :global {
+    @media screen and (min-width: 992px) {
+      animation: containerFromBottomIn 0.5s;
+    }
+  }
+  :global {
     .page-inner {
       display: flex;
       & > span {

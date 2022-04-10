@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import style from './style.module.less'
 
 interface PageTitleProps {
-  title: string
+  title: ReactNode
   subTitle?: ReactNode
 }
 
@@ -14,7 +14,7 @@ const PageTitle: FC<PageTitleProps> = ({ title, subTitle }) => {
         [style['morePadding']]: subTitle,
       })}
     >
-      <h2>{title}</h2>
+      <div className="title-header">{title}</div>
       {subTitle && <div className="subTitle-wrapper">{subTitle}</div>}
     </header>
   )

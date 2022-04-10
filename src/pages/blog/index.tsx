@@ -7,10 +7,12 @@ import { useParams, useNavigate } from 'react-router-dom'
 import ErrorTips from '../components/errorTips'
 import BlogSubTitle from './components/blogSubTitle'
 import MarkdownNavbar from 'markdown-navbar'
+import { AudioOutlined } from '@ant-design/icons'
 
 import style from './style.module.less'
 import BlogNavBtn from './components/blogNavBtn'
 import Drawer from '@src/components/drawer'
+import Speech from './components/speechSynthesis'
 
 interface BlogState {
   content: string
@@ -59,7 +61,12 @@ const Blog = () => {
       ) : (
         <>
           <PageTitle
-            title={blog?.title || ''}
+            title={
+              <>
+                {blog?.title}
+                <Speech content={blog?.content || ''} />
+              </>
+            }
             subTitle={
               <BlogSubTitle
                 group={blog?.group.label}
