@@ -58,6 +58,24 @@ const CommentInputArea: FC<CommentInputAreaProps> = ({
     }
   }
 
+  const handleEmailBlur = () => {
+    if (!isValidEmail(email)) {
+      message.warning('邮箱格式错误')
+      return
+    }
+
+    localStorage.setItem(User.email, email)
+  }
+
+  const handleHomepageBlur = () => {
+    if (!isValidUrl(homepage)) {
+      message.warning('链接格式错误')
+      return
+    }
+
+    localStorage.setItem(User.homepage, homepage)
+  }
+
   const handleSubmit = async () => {
     if (email === '' || !isValidEmail(email)) {
       message.warning('请输入邮箱')
@@ -133,6 +151,7 @@ const CommentInputArea: FC<CommentInputAreaProps> = ({
             onChange={e => {
               setEmail(e.target.value.trim())
             }}
+            onBlur={handleEmailBlur}
           />
           <LabelInput
             label="链接"
@@ -142,6 +161,7 @@ const CommentInputArea: FC<CommentInputAreaProps> = ({
               setHomepage(e.target.value.trim())
             }}
             value={homepage}
+            onBlur={handleHomepageBlur}
           />
         </div>
         <div className="commentInput-bottom">
