@@ -23,6 +23,7 @@ import Loading from './components/loading'
 import { getArticleList } from './api/common'
 import { useSetRecoilState } from 'recoil'
 import { ArticleListAtom } from './atom'
+import { publishTimeCmp } from './utils'
 dayjs.locale('zh-cn')
 
 const App = () => {
@@ -34,7 +35,7 @@ const App = () => {
       .then(({ data: { data, code } }) => {
         if (code === -1) throw '服务异常'
 
-        setArticleList(data)
+        setArticleList(data.sort(publishTimeCmp))
       })
       .catch(e => {
         console.log(e)
