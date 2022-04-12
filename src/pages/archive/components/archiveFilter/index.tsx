@@ -22,6 +22,9 @@ const ArchiveFilter: FC<ArchiveFilterProps> = ({
 
   const { state } = useLocation()
 
+  const groupRef = useRef('')
+  const tagsRef = useRef<string[]>([])
+
   const changeLabel = (label: string) => {
     const originData = cacheRef.current
     setData({
@@ -45,35 +48,48 @@ const ArchiveFilter: FC<ArchiveFilterProps> = ({
   const handleGroupChange = (label: string | string[]) => {
     const originData = cacheRef.current
 
-    if (!label || label.length === 0) {
-      setData({ data: originData })
-      return
+    if (typeof label === 'string') {
+      groupRef.current = label
+    } else if (Array.isArray(label)) {
+      tagsRef.current = label
     }
 
-    if (typeof label === 'string') {
-      changeLabel(label)
-    } else if (Array.isArray(label)) {
-      setData({
-        data: originData
-          .map(({ archiveTime, blogs }) => {
-            return {
-              archiveTime,
-              blogs: blogs.filter(({ tags }) => {
-                const target = tags.map(({ label }) => label)
+    const groupFilter = groupRef.current
+    const tagsFilter = tagsRef.current
 
-                for (let i = 0; i < label.length; i++) {
-                  if (target.includes(label[i])) {
-                    return true
-                  }
-                }
+    let updateData = originData
 
-                return false
-              }),
-            }
-          })
-          .filter(v => v.blogs.length !== 0),
+    if (groupFilter !== '') {
+      updateData = updateData.map(({ archiveTime, blogs }) => {
+        return {
+          archiveTime,
+          blogs: blogs.filter(({ group }) => group.label === groupFilter),
+        }
       })
     }
+
+    if (tagsFilter.length !== 0) {
+      updateData = updateData.map(({ archiveTime, blogs }) => {
+        return {
+          archiveTime,
+          blogs: blogs.filter(({ tags }) => {
+            const target = tags.map(({ label }) => label)
+
+            for (let i = 0; i < tagsFilter.length; i++) {
+              if (target.includes(tagsFilter[i])) {
+                return true
+              }
+            }
+
+            return false
+          }),
+        }
+      })
+    }
+
+    setData({
+      data: updateData.filter(v => v.blogs.length !== 0),
+    })
   }
 
   return (
