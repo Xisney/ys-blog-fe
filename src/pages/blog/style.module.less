@@ -16,6 +16,9 @@
     align-items: center;
   }
   .markdown-navigation {
+    font-family: inherit;
+    max-width: 260px;
+    padding-right: 8px;
     .title-anchor {
       cursor: pointer;
       user-select: none;
@@ -42,6 +45,36 @@
       &:hover::after {
         width: 100%;
       }
+    }
+
+    .title-level1 {
+      font-size: 1.2em;
+      margin-left: 1em;
+    }
+
+    .title-level2 {
+      font-size: 1em;
+      margin-left: 1em;
+    }
+
+    .title-level3 {
+      font-size: 0.9em;
+      margin-left: 2em;
+    }
+
+    .title-level4 {
+      font-size: 0.8em;
+      margin-left: 3em;
+    }
+
+    .title-level5 {
+      font-size: 0.72em;
+      margin-left: 4em;
+    }
+
+    .title-level6 {
+      font-size: 0.72em;
+      margin-left: 5em;
     }
   }
 }

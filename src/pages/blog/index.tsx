@@ -6,14 +6,15 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import ErrorTips from '../components/errorTips'
 import BlogSubTitle from './components/blogSubTitle'
-import MarkdownNavbar from 'markdown-navbar'
 import { ArticleListAtom } from '@src/atom'
 
-import style from './style.module.less'
 import BlogNavBtn from './components/blogNavBtn'
 import Drawer from '@src/components/drawer'
 import Speech from './components/speechSynthesis'
 import { useSetRecoilState } from 'recoil'
+
+import MarkdownNavbar from 'markdown-navbar'
+import style from './style.module.less'
 
 interface BlogState {
   content: string
