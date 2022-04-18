@@ -56,7 +56,7 @@ const CommentListItem: FC<CommentListItemProps> = ({
               {nickname}
             </span>
             {isAdmin && <span className="comment-adminLabel">站长</span>}
-            <span className="comment-time">{dayjs(timestamp).toNow()}</span>
+            <span className="comment-time">{dayjs(timestamp).fromNow()}</span>
           </div>
           {showReply && (
             <MessageOutlined className="reply-icon" onClick={onReply} />
