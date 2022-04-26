@@ -4,4 +4,4 @@ export enum PlayState {
   notRead = 'notRead',
 }
 
-export const specailCode = /\#/g
+export const specailCode = /\#|```(html|js).*```|!\[.*\]\(.*\)/gs
