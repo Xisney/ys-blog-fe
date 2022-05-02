@@ -32,6 +32,12 @@ const Archive = () => {
       className={style['archive-container']}
     >
       {({ data }: ArchiveData, setData) => {
+        data.sort((a, b) => {
+          if (a.archiveTime > b.archiveTime) return -1
+
+          return 0
+        })
+
         const articelNum = data.reduce((pre, v) => {
           return pre + v.blogs.length
         }, 0)
